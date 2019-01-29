@@ -11,6 +11,7 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="{{ secure_asset('/css/style.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
         crossorigin="anonymous">
@@ -20,63 +21,48 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
         crossorigin="anonymous"></script>
+
 </head>
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ route('index') }}">
-                    <img src="{{ asset('logo_transparent.png') }}" height="25" alt="logo">
-                    {{ config('app.name')}}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+    
+    <div class="nav-container container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <nav class="navbar fixed-top navbar-toggleable-sm navbar-expand-lg navbar-light bg-light shadow-sm">
+            <a class="navbar-brand" href="{{ route('index') }}">
+                <img id="navLogo" src="{{ asset('logo_new.png') }}" height="100" alt="mb-logo">
+            </a>
+          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                ☰
+            </button>
+          <div class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+              <li class="nav-item active">
+                <a class="nav-link" href="{{ route('temp_recipe') }}">Recipies</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('index') }}">Ingredients</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('support') }}">Help</a>
+              </li>
+            </ul>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('index')}}">Recipes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('support')}}">Support</a>
-                        </li>
-                    </ul>
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                        </li>
-                        @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </li>
-                        @endif @else
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                  <a class="mr-4" href="{{ route('login') }}">Login</a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('register') }}">Register</a>
+                </li>
+              </ul>
+          </div>
         </nav>
+      </div>
+    </div>
+  </div>
 
         <main class="py-4">
             @yield('content')

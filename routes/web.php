@@ -25,6 +25,10 @@ Route::get('/support', function () {
     return view('support');
 })->name('support');
 
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
+
 Route::get('/recipe', function () {
     return view('recipe');
 })->name('temp_recipe');

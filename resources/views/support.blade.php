@@ -1,6 +1,7 @@
 @extends('layouts.app') 
 @section('content')
 <div class="container" style="margin-top: 100px;">
+  <h1 style="text-align: center;margin-top: 30px">FAQ's</h1>
   <div class="row">
     <div class="col-md-12">
       <div id="card-645473">

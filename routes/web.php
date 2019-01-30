@@ -13,11 +13,11 @@
 
 Auth::routes();
 
-Route::get('/', function () {
+/* Route::get('/', function () {
     return view('welcome');
-});
+}); */
 
-Route::get('/main', function () {
+Route::get('/', function () {
     return view('index');
 })->name('index');
 

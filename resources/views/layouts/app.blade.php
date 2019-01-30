@@ -10,6 +10,8 @@
   <title>{{ config('app.name') }}</title>
 
   <!-- Fonts -->
+  <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+  <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
   <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">

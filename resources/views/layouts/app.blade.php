@@ -55,10 +55,10 @@
 
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                  <a class="mr-4" href="{{ route('login') }}">Login</a>
+                  <a class="mr-4 nav-link" href="{{ route('login') }}">Login</a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route('register') }}">Register</a>
+                  <a class="mr-4 nav-link" href="{{ route('register') }}">Register</a>
                 </li>
               </ul>
           </div>

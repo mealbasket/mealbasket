@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
@@ -68,15 +68,12 @@
 
 <body>
   <div class="flex-center position-ref full-height">
-    @if (Route::has('login'))
     <div class="top-right links">
       @auth
       <a href="{{ url('/home') }}">Home</a> @else
-      <a href="{{ route('login') }}">Login</a> @if (Route::has('register'))
-      <a href="{{ route('register') }}">Register</a> @endif @endauth
+      <a href="{{ route('login') }}">Login</a>
+      <a href="{{ route('register') }}">Register</a> @endauth
     </div>
-    @endif
-
     <div class="content">
       <div class="title m-b-md">
         MealBasket

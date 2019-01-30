@@ -22,11 +22,11 @@ Route::get('/main', function () {
 })->name('index');
 
 Route::get('/support', function () {
-    return view('support');
+    return view('static_pages.support');
 })->name('support');
 
 Route::get('/about', function () {
-    return view('about');
+    return view('static_pages.about');
 })->name('about');
 
 Route::get('/recipe', function () {

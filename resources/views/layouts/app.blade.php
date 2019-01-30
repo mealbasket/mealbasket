@@ -36,9 +36,10 @@
             <a class="navbar-brand" href="{{ route('index') }}">
                 <img id="navLogo" src="{{ asset('logo_new.png') }}" height="100" alt="mb-logo">
             </a>
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+            <button class="navbar-toggler navbar-toggler-left order-first" type="button" data-toggle="collapse" data-target=".navbar-collapse">
                 ☰
             </button>
+            
             <div class="navbar-collapse collapse">
               <ul class="navbar-nav">
                 <li class="nav-item">
@@ -57,19 +58,19 @@
                   <a class="nav-link" href="{{ route('support') }}">Help</a>
                 </li>
               </ul>
-
-              <ul class="navbar-nav ml-auto mr-3">
+            </div>
+            <ul class="navbar-nav ml-auto mr-3 cartAndUser">
                 @guest
-                <li class="nav-item">
+                <li class="nav-item mt-1 mr-2">
                   <a class="nav-link" href="{{ route('login') }}">Login</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ route('register') }}">Register</a>
                 </li>
                 @else
                 <li class="nav-item dropdown">
-                  <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown">{{ Auth::user()->name }}</a>
-                  <div class="dropdown-menu dropdown-menu-right">
+                  <!-- <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown">{{ Auth::user()->name }}</a> -->
+                  <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                    <img id="userIcon" border="0" src="{{ asset('/img/user.png') }}" width="40" height="40">
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right logoutDropdown">
                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                       @csrf
@@ -77,8 +78,10 @@
                   </div>
                   @endguest
                 </li>
+                <li class="mt-2 ml-1 nav-item">
+                  <a href="#"><img id="cartIcon" border="0" src="{{ asset('/img/cart.png') }}" width="40" height="40"></a>
+                </li>
               </ul>
-            </div>
           </nav>
         </div>
       </div>

@@ -69,3 +69,13 @@ nav {
 .card {
   margin-bottom: 0.75rem!important;
 }
+
+.cartAndUser {
+  flex-direction: row!important;
+  position: absolute;
+  right: 0%;
+}
+
+.logoutDropdown.show {
+  position: absolute!important;
+}

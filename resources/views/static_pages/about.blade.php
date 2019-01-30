@@ -9,21 +9,20 @@
         <div>
             <h2>Overview</h2>
             <p>
-                In today’s fast moving world, people are busy and they find it difficult to buy fresh produce, to cook a meal. Also, help
-                people with cooking who are new to it. Hence the main aim is to provide people fresh and guaranteed produce
-                to cook a desired meal.
+                In today’s fast moving world, people are busy and they find it difficult to find the time to buy fresh produce to cook a meal. Also, some people are not aware of
+                the wide range of ingredients available & the quantities that must be used.
             </p>
-            <p> With this project, we propose to bridge the gap between the desire to cook and the tedious job of identifying
-                and acquiring produce.</p>
+            <p>We have a wide variety of tried and tested recipes from around the globe, for you to choose from. Further you may choose the number of servings as you wish and 
+            have just the right amount of produce delivered at your doorstep at a time of your choosing.</p>
         </div>
-
+                
         <div>
             <h2> Our Goal </h2>
-            <p>The idea is to develop a web/mobile app wherein the user can go through a list of recipes, choose one suitable
-                to his/her tastes, and then place an order for the ingredients required for that recipe.
+            <p>We aim to provide an individual who has the desire to cook with the knowledge and the produce inorder to help one realise their desire.
+                We endure to provide the freshest of fresh ingredients, local, exotic and everything in between.
+                We propose to bridge the gap between the desire to cook and the tedious job of identifying and acquiring produce.
             </p>
-            <p>The site features a variety of tried and tested recipes from various cooking sites, along with a couple of our
-                own.
+            <p>
             </p>
         </div>
     </div>

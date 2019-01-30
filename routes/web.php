@@ -29,6 +29,10 @@ Route::get('/about', function () {
     return view('static_pages.about');
 })->name('about');
 
+Route::get('/search', function () {
+    return view('search');
+})->name('search');
+
 Route::get('/recipe', function () {
     return view('recipe');
 })->name('temp_recipe');

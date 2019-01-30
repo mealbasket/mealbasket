@@ -30,7 +30,7 @@
     <div class="nav-container container-fluid">
       <div class="row">
         <div class="col-md-12">
-          <nav class="navbar fixed-top navbar-toggleable-sm navbar-expand-lg navbar-light bg-light shadow-sm">
+          <nav class="navbar fixed-top navbar-toggleable-sm navbar-expand-lg navbar-light shadow-sm">
             <a class="navbar-brand" href="{{ route('index') }}">
                 <img id="navLogo" src="{{ asset('logo_new.png') }}" height="100" alt="mb-logo">
             </a>
@@ -83,6 +83,10 @@
       @yield('content')
     </main>
   </div>
+
+  <footer class="mt-5 row justify-content-center">
+    <div>© Copyright 2019 MealBasket</div>
+  </footer>
 </body>
 
 </html>

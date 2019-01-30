@@ -65,3 +65,7 @@ nav {
     height: 100px;
   }
 } 
+
+.card {
+  margin-bottom: 0.75rem!important;
+}

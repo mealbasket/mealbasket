@@ -16,7 +16,8 @@ class CreateIngUnitsTable extends Migration
         Schema::create('ing_units', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->string('unit');
+            $table->string('unit_short')->unique();
+            $table->string('unit_full')->unique();
         });
     }
 

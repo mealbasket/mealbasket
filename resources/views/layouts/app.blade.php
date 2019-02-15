@@ -39,7 +39,7 @@
             <button class="navbar-toggler navbar-toggler-left order-first" type="button" data-toggle="collapse" data-target=".navbar-collapse">
                 ☰
             </button>
-            
+
             <div class="navbar-collapse collapse">
               <ul class="navbar-nav">
                 <li class="nav-item">
@@ -49,7 +49,7 @@
                   <a class="nav-link" href="{{ route('index') }}">Recipes</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{ route('index') }}">Ingredients</a>
+                  <a class="nav-link" href="{{ route('ingredients.index') }}">Ingredients</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{{ route('about') }}">About</a>
@@ -60,28 +60,28 @@
               </ul>
             </div>
             <ul class="navbar-nav ml-auto mr-3 cartAndUser">
-                @guest
-                <li class="nav-item mt-1 mr-2">
-                  <a class="nav-link" href="{{ route('login') }}">Login</a>
-                </li>
-                @else
-                <li class="nav-item dropdown">
-                  <!-- <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown">{{ Auth::user()->name }}</a> -->
-                  <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+              @guest
+              <li class="nav-item mt-1 mr-2">
+                <a class="nav-link" href="{{ route('login') }}">Login</a>
+              </li>
+              @else
+              <li class="nav-item dropdown">
+                <!-- <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown">{{ Auth::user()->name }}</a> -->
+                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                     <img id="userIcon" border="0" src="{{ asset('/img/user.png') }}" width="40" height="40">
                   </a>
-                  <div class="dropdown-menu dropdown-menu-right logoutDropdown">
-                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                      @csrf
-                    </form>
-                  </div>
-                  @endguest
-                </li>
-                <li class="mt-2 ml-1 nav-item">
-                  <a href="#"><img id="cartIcon" border="0" src="{{ asset('/img/cart.png') }}" width="40" height="40"></a>
-                </li>
-              </ul>
+                <div class="dropdown-menu dropdown-menu-right logoutDropdown">
+                  <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                  </form>
+                </div>
+                @endguest
+              </li>
+              <li class="mt-2 ml-1 nav-item">
+                <a href="#"><img id="cartIcon" border="0" src="{{ asset('/img/cart.png') }}" width="40" height="40"></a>
+              </li>
+            </ul>
           </nav>
         </div>
       </div>

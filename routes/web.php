@@ -37,4 +37,5 @@ Route::get('/recipe', function () {
     return view('recipe');
 })->name('temp_recipe');
 
+Route::resource('ingredients', 'IngredientController');
 Route::get('/home', 'HomeController@index')->name('home');

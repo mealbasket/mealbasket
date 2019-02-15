@@ -14,7 +14,8 @@ class IngredientController extends Controller
      */
     public function index()
     {
-        //
+        $ingredients = Ingredient::select('id', 'name', 'base_quantity', 'price', 'unit_id')->paginate(30);
+        return view('ingredient.index')->with('ingredients', $ingredients);
     }
 
     /**

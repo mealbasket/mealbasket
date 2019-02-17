@@ -38,4 +38,5 @@ Route::get('/recipe', function () {
 })->name('temp_recipe');
 
 Route::resource('ingredients', 'IngredientController');
+Route::resource('recipes', 'RecipeController');
 Route::get('/home', 'HomeController@index')->name('home');

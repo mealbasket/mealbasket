@@ -33,7 +33,7 @@ Route::get('/search', function () {
     return view('search');
 })->name('search');
 
-Route::get('/recipe', function () {
+Route::get('/recipe_page', function () {
     return view('recipe');
 })->name('temp_recipe');
 

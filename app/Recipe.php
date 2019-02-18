@@ -7,9 +7,21 @@ use Storage;
 
 class Recipe extends Model
 {
-    protected $appends = ['image'];
-    public function getImageAttribute()
+    protected $appends = ['images'];
+    public function getImagesAttribute()
     {
-        return Storage::disk('s3')->temporaryUrl('recipe_images/'.$this->id.'.png', now()->addMinutes(5));
+        $folder = 'recipe_images/'.$this->id.'/';
+        $count = count(Storage::disk('s3')->files($folder));
+        $images = array();
+        for($i=1; $i<=$count; $i++)
+        {
+            $images[] = Storage::disk('s3')->temporaryUrl($folder.$i.'.jpg', now()->addMinutes(5));
+        }
+        return $images;
+    }
+
+    public function Category()
+    {
+        return $this->hasOne('App\Category', 'id', 'category_id');
     }
 }

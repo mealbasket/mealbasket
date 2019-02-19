@@ -28,4 +28,9 @@ class Recipe extends Model
     {
         return $this->hasMany('App\RecipeNutrition', 'recipe_id', 'id');
     }
+
+    public function Steps()
+    {
+        return $this->hasMany('App\RecipeStep', 'recipe_id', 'id');
+    }
 }

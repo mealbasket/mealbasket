@@ -52,7 +52,7 @@
   </div>
   </div>
 
-  <div class="row" style="padding-top: 25px;">
+  <div class="row pt-5">
     <div class="col-md-offset-1 col-md-10 col-md-offset-1">
       <h2>Ingredients</h2>
       <ul>

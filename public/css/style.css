@@ -52,17 +52,27 @@ nav {
   transform: translateX(-50%);
 }
 
-@media only screen and (max-width: 600px) {
+/* Mobile Screen */
+@media only screen and (max-width: 600px) { 
   #navLogo {
     margin-top: -10px;
     height: 70px;
   }
+
+  .ingOrRecipeCard {
+    width: auto;
+  }
 } 
 
+/* PC Screen */
 @media only screen and (min-width: 768px) {
   #navLogo {
     margin-top: -20px;
     height: 100px;
+  }
+
+  .ingOrRecipeCard {
+    width: fit-content;
   }
 } 
 
@@ -89,3 +99,4 @@ nav {
   height: 300px;
   border-radius: 20px;
 }
+

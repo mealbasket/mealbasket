@@ -84,4 +84,4 @@
 
 @section('pagespecificscripts')
     
-@stop
+@endsection

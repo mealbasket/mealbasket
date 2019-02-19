@@ -10,12 +10,11 @@ class Recipe extends Model
     protected $appends = ['images'];
     public function getImagesAttribute()
     {
-        $folder = 'recipe_images/'.$this->id.'/';
-        $count = count(Storage::disk('s3')->files($folder));
+        $paths = Storage::disk('s3')->files('recipe_images/'.$this->id);
         $images = array();
-        for($i=1; $i<=$count; $i++)
+        foreach($paths as $path)
         {
-            $images[] = Storage::disk('s3')->temporaryUrl($folder.$i.'.jpg', now()->addMinutes(5));
+            $images[] = Storage::disk('s3')->temporaryUrl($path, now()->addMinutes(5));
         }
         return $images;
     }

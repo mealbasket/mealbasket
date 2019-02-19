@@ -38,4 +38,9 @@ class Recipe extends Model
     {
         return $this->belongsToMany('App\Tag');
     }
+
+    public function Ingredients()
+    {
+        return $this->belongsToMany('App\Ingredient', 'recipe_ingredient');
+    }
 }

@@ -15,6 +15,6 @@ class Ingredient extends Model
 
     public function Unit()
     {
-        return $this->hasOne('App\IngUnit', 'id', 'unit_id');
+        return $this->hasOne('App\Units', 'id', 'unit_id');
     }
 }

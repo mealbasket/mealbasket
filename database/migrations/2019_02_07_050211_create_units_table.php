@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateIngUnitsTable extends Migration
+class CreateUnitsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateIngUnitsTable extends Migration
      */
     public function up()
     {
-        Schema::create('ing_units', function (Blueprint $table) {
+        Schema::create('units', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->string('unit_short')->unique();
@@ -28,6 +28,6 @@ class CreateIngUnitsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ing_units');
+        Schema::dropIfExists('units');
     }
 }

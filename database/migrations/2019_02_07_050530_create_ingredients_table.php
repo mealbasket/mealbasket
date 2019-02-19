@@ -18,7 +18,7 @@ class CreateIngredientsTable extends Migration
             $table->timestamps();
             $table->string('name')->unique();
             $table->unsignedInteger('unit_id');
-            $table->foreign('unit_id')->references('id')->on('ing_units');
+            $table->foreign('unit_id')->references('id')->on('units');
             $table->integer('price');
             $table->integer('base_quantity');
             $table->string('img_path');

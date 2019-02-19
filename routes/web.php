@@ -29,13 +29,8 @@ Route::get('/about', function () {
     return view('static_pages.about');
 })->name('about');
 
-Route::get('/search', function () {
-    return view('search');
-})->name('search');
-
-Route::get('/recipe_page', function () {
-    return view('recipe');
-})->name('temp_recipe');
+Route::get('/search', 'SearchController@index')->name('search');
+Route::post('/search', 'SearchController@search');
 
 Route::resource('ingredients', 'IngredientController');
 Route::resource('recipes', 'RecipeController');

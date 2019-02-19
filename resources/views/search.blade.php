@@ -4,6 +4,7 @@
     <div class="col-md-12">
     <h3>Search</h3>
     <form action="/search" method="POST">
+      @csrf
       <div class="row px-3">
         <div class="input-group mb-3">
           <input type="text" class="form-control" name="query" placeholder="Enter search query">

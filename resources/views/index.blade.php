@@ -13,7 +13,7 @@
     <div class="row">
       <div class="col-md-2 col-sm-4">
         <div class="card">
-          <a href="{{route('temp_recipe')}}">
+          <a href="{{route('recipes.index')}}">
               <img class="card-img-top" src="https://images.media-allrecipes.com/userphotos/720x405/5638926.jpg" />
               <div class="card-block">
                 <h5 class="card-title">

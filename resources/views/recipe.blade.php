@@ -1,9 +1,7 @@
 @extends('layouts.app') 
 @section('content')
 <div class="row" style="border-bottom-color: black;padding-top: 15px;border-bottom-width: unset; padding-bottom: 25px;border-bottom-style: double;">
-  <div class="col-md-1">
-  </div>
-  <div class="col-md-5">
+  <div class="col-md-offset-1 col-md-5">
     <div class="jumbotron">
       <h2>
         Chicken Tikka Masala
@@ -18,7 +16,7 @@
       </p>
     </div>
   </div>
-  <div class="col-md-5">
+  <div class="col-md-5 col-md-offset-1">
     <div class="carousel slide" id="carousel-983258">
       <ol class="carousel-indicators">
         <li data-slide-to="0" data-target="#carousel-983258" class="active">
@@ -41,8 +39,7 @@
       </div> <a class="carousel-control-prev" href="#carousel-983258" data-slide="prev"><span class="carousel-control-prev-icon"></span> <span class="sr-only">Previous</span></a>      <a class="carousel-control-next" href="#carousel-983258" data-slide="next"><span class="carousel-control-next-icon"></span> <span class="sr-only">Next</span></a>
     </div>
   </div>
-  <div class="col-md-1">
-  </div>
+
 </div>
 <div class="row" style="padding-top: 25px;">
   <div class="col-md-1">

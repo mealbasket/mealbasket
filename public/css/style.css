@@ -79,3 +79,13 @@ nav {
 .logoutDropdown.show {
   position: absolute!important;
 }
+
+.recipeSpans {
+  margin-right: 20px;
+}
+
+.recipeImage {
+  width: auto;
+  height: 300px;
+  border-radius: 20px;
+}

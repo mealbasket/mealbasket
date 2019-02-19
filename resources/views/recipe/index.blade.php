@@ -14,7 +14,9 @@
         <p class="card-title font-weight-bold text-center">{{$recipe->name}}</p>
         <p class="card-title font-weight-bold text-center">~ ₹{{$recipe->price}}/-</p>
         <div class="row justify-content-center">
-          <button type="button" class="btn btn-outline-success" style="width: 50%">View Details</button>
+          <button type="button" class="btn btn-outline-success" style="width: 50%">
+            <a style="color: #28a745;" href="{{ url( 'recipes/' . $recipe->id ) }}">View Details</a>
+          </button>
         </div>
       </div>
     </div>

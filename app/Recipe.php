@@ -33,4 +33,9 @@ class Recipe extends Model
     {
         return $this->hasMany('App\RecipeStep', 'recipe_id', 'id');
     }
+
+    public function Tags()
+    {
+        return $this->belongsToMany('App\Tag');
+    }
 }

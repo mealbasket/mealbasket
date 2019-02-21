@@ -6,6 +6,10 @@ $(window).on('load', function(){
   });
 });
 
+$(window).on('load', function(){
+  $('#loader').fadeOut("slow");
+});
+
 //Function for generating stars from rating
 //Used as: document.getElementById("stars").innerHTML = getStars({{$recipe->rating}});
 function getStars(rating) {

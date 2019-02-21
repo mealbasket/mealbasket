@@ -5,6 +5,7 @@
   width: 100vw;
   overflow: hidden;
   position: fixed;
+  z-index: 9999;
 }
 h1.loader {
   position: relative;

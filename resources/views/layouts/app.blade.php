@@ -50,7 +50,7 @@
 		</div>
 	</div>
 </div>
-  <div id="app" style="display: none;">
+  <div id="app">
 
     <div class="nav-container container-fluid">
       <div class="row">
@@ -115,7 +115,7 @@
     </main>
   </div>
 
-  <footer class="mt-5 row justify-content-center" style="display: none;">
+  <footer class="mt-5 row justify-content-center">
     <div>© Copyright 2019 MealBasket</div>
   </footer>
   @yield('pagespecificscripts')

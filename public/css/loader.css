@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Amatic+SC');
-body {
+#loader {
   background-color: #ffde6b;
   height: 100vh;
   width: 100vw;
@@ -231,3 +231,17 @@ h1.loader {
     opacity: 0.25;
   }
 }
+
+/* Mobile Screen */
+@media only screen and (max-width: 600px) { 
+  #cooking {
+    width: auto;
+  }
+} 
+
+/* PC Screen */
+@media only screen and (min-width: 768px) {
+  #cooking {
+    width: 75vh;
+  }
+} 

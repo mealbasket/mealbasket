@@ -1,12 +1,4 @@
 $(window).on('load', function(){
-  $('#loader').fadeOut("slow",function(){
-    $('#app').fadeIn(400, function(){
-      $('footer').fadeIn();
-    });
-  });
-});
-
-$(window).on('load', function(){
   $('#loader').fadeOut("slow");
 });
 

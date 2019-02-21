@@ -1,3 +1,14 @@
+$(window).on('load', function(){
+  $('#loader').fadeOut("slow",function(){
+    $('#app').fadeIn(400, function(){
+      $('footer').fadeIn();
+    });
+  });
+});
+
+$(window).on('load', function(){
+  $('#loader').fadeOut("slow");
+});
 
 //Function for generating stars from rating
 //Used as: document.getElementById("stars").innerHTML = getStars({{$recipe->rating}});

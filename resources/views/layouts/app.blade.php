@@ -31,8 +31,26 @@
 </head>
 
 <body>
-
-  <div id="app">
+<div id="loader">
+	<h1 class="loader">Please wait...</h1>
+	<div id="cooking">
+		<div class="bubble"></div>
+		<div class="bubble"></div>
+		<div class="bubble"></div>
+		<div class="bubble"></div>
+		<div class="bubble"></div>
+		<div id="area">
+			<div id="sides">
+				<div id="pan"></div>
+				<div id="handle"></div>
+			</div>
+			<div id="pancake">
+				<div id="pastry"></div>
+			</div>
+		</div>
+	</div>
+</div>
+  <div id="app" style="display: none;">
 
     <div class="nav-container container-fluid">
       <div class="row">
@@ -97,7 +115,7 @@
     </main>
   </div>
 
-  <footer class="mt-5 row justify-content-center">
+  <footer class="mt-5 row justify-content-center" style="display: none;">
     <div>© Copyright 2019 MealBasket</div>
   </footer>
   @yield('pagespecificscripts')

@@ -1,5 +1,9 @@
 $(window).on('load', function(){
-  //$('.loader').fadeOut("slow");
+  $('#loader').fadeOut("slow",function(){
+    $('#app').fadeIn(400, function(){
+      $('footer').fadeIn();
+    });
+  });
 });
 
 //Function for generating stars from rating

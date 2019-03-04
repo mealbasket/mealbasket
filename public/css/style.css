@@ -80,6 +80,10 @@ footer {
   }
 } 
 
+.btnAdmin {
+  margin: 0.25rem 0.5rem 0.25rem 0.5rem!important;
+}
+
 .card {
   margin-bottom: 0.75rem!important;
 }

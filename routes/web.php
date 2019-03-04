@@ -35,3 +35,5 @@ Route::post('/search', 'SearchController@search');
 Route::resource('ingredients', 'IngredientController');
 Route::resource('recipes', 'RecipeController');
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/admin', 'AdminController@index')->name('admin');

@@ -87,6 +87,10 @@
                   <img id="userIcon" border="0" src="{{ asset('/img/user.png') }}" width="40" height="40">
                   </a>
                   <div class="dropdown-menu dropdown-menu-right logoutDropdown">
+                      <a class="dropdown-item" href="{{ route('home') }}">My Account</a>
+                      @if(Auth::User()->hasRole('admin'))
+                      <a class="dropdown-item" href="{{ route('admin') }}">Admin</a>
+                      @endif
                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                       @csrf
@@ -103,6 +107,7 @@
         </div>
       </div>
       <main class="container" style="margin-top: 120px;">
+        @include('layouts.messages')
         @yield('content')
       </main>
     </div>

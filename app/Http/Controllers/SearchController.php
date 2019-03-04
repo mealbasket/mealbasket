@@ -33,7 +33,7 @@ class SearchController extends Controller
         $query = $request->input('query');
         $type = $request->input('type');
         if ($type=="recipe") {
-            $result = Recipe::where('name', 'like', '%'.$query.'%')->paginate(10);
+            $result = Recipe::where('name', 'like', '%'.$query.'%')->approved()->paginate(10);
             return view('recipe.index')->with('recipes', $result);
         }
         if ($type=="ingredient") {

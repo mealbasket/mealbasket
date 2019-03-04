@@ -8,13 +8,24 @@ use Illuminate\Http\Request;
 class RecipeController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+        $this->middleware('checkRole:admin')->except(['index', 'show']);
+    }
+    
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $recipes = Recipe::select('id', 'name', 'prep_time', 'price', 'rating')->paginate(30);
+        $recipes = Recipe::select('id', 'name', 'prep_time', 'price', 'rating', 'approved')->approved()->paginate(30);
         return view('recipe.index')->with('recipes', $recipes);
     }
 
@@ -70,7 +81,12 @@ class RecipeController extends Controller
      */
     public function update(Request $request, Recipe $recipe)
     {
-        //
+        $this->validate($request, [
+            'approved' => 'in:0,1'
+        ]);
+        $data = $request->only($recipe->getFillable());
+        $recipe->fill($data)->save();
+        return redirect('/admin/recipes')->with('success', 'Recipe updated');
     }
 
     /**

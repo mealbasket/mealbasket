@@ -7,6 +7,7 @@ use Storage;
 
 class Recipe extends Model
 {
+    protected $fillable = ['approved'];
     protected $appends = ['images'];
     public function getImagesAttribute()
     {
@@ -42,5 +43,22 @@ class Recipe extends Model
     public function Ingredients()
     {
         return $this->belongsToMany('App\Ingredient', 'recipe_ingredient');
+    }
+
+    public function isApproved()
+    {
+        if($this->approved == '1')
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public function scopeApproved($query)
+    {
+        return $query->where('approved', '=', '1');
     }
 }

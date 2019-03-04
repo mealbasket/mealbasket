@@ -4,7 +4,7 @@
   @if(count($ingredients)>0)
   <div class="row">
     @foreach($ingredients as $ingredient)
-    <div class="col-md-2 py-2">
+    <div class="col-6 col-md-2 py-2">
       <div class="card ingOrRecipeCard">
         <div class="card-block text-center py-2">
           <img src="{{$ingredient->Image}}" alt="{{$ingredient->name}}" style="height: 150px; width: auto;">

@@ -20,11 +20,6 @@ class Recipe extends Model
         return $images;
     }
 
-    public function Category()
-    {
-        return $this->hasOne('App\Category', 'id', 'category_id');
-    }
-
     public function Nutrition()
     {
         return $this->hasMany('App\RecipeNutrition', 'recipe_id', 'id');

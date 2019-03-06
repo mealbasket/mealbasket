@@ -7,6 +7,7 @@ use App\Tag;
 use App\Units;
 use App\Nutrition;
 use App\RecipeStep;
+use App\Ingredient;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -79,5 +80,39 @@ class ApiController extends Controller
             $step->save();
         }
         return response()->json(['success' => 'true', 'id' => $data['id']], 200);
+    }
+
+    public function storeIngredients(Request $request)
+    {
+        $data = $request->all();
+        $r = Recipe::find($data['id']);
+        $in = array();
+        for($i=1; $i<=$data['count']; $i++)
+        {
+            if(!array_key_exists('unit_'.$i, $data))
+                $data['unit_'.$i]='undefined';
+            if(!array_key_exists('value_'.$i, $data))
+                $data['value_'.$i]=0;
+            if(!Ingredient::where('name', $data['ing_'.$i])->exists())
+            {
+                $ing = new Ingredient;
+                $ing->name = $data['ing_'.$i];
+                $ing->price = 60;
+                $ing->base_quantity = 1;
+                $ing->image_path = $request->file('image_'.$i)->store('ingredient_images', 's3');
+                $temp = Units::firstOrCreate(['unit_short' => $data['unit_'.$i]]);
+                $ing->unit_id = $temp->id;
+                $ing->save();
+            }
+            else
+            {
+                $ing = Ingredient::where('name', $data['ing_'.$i])->first();
+                $temp = Units::firstOrCreate(['unit_short' => $data['unit_'.$i]]);
+            }
+            $in[$ing->id]=['unit_id'=>$temp->id, 'value'=>$data['value_'.$i]];
+        }
+        $r->Ingredients()->sync($in);
+        $r->save();
+        return response()->json(['success' => 'true', 'id' => $r->id], 200);
     }
 }

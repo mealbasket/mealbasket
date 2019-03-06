@@ -30,7 +30,7 @@ class Recipe extends Model
 
     public function Ingredients()
     {
-        return $this->belongsToMany('App\Ingredient', 'recipe_ingredient');
+        return $this->belongsToMany('App\Ingredient', 'recipe_ingredient')->using('App\RecipeIngredient')->withPivot(['unit_id', 'value'])->withTimestamps();
     }
 
     public function isApproved()

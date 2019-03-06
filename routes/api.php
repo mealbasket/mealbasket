@@ -18,3 +18,4 @@ Route::post('recipe', 'ApiController@storeRecipe');
 Route::post('tags', 'ApiController@storeTags');
 Route::post('nutrition', 'ApiController@storeNutrition');
 Route::post('steps', 'ApiController@storeSteps');
+Route::post('ingredients', 'ApiController@storeIngredients');

@@ -14,10 +14,14 @@ class CreateRecipeIngredientTable extends Migration
     public function up()
     {
         Schema::create('recipe_ingredient', function (Blueprint $table) {
+            $table->timestamps();
             $table->unsignedInteger('recipe_id');
             $table->foreign('recipe_id')->references('id')->on('recipes');
             $table->unsignedInteger('ingredient_id');
             $table->foreign('ingredient_id')->references('id')->on('ingredients');
+            $table->unsignedInteger('unit_id')->nullable();
+            $table->foreign('unit_id')->references('id')->on('units');
+            $table->integer('value')->nullable();
         });
     }
 

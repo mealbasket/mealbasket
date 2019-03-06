@@ -7,17 +7,10 @@ use Storage;
 
 class Recipe extends Model
 {
-    protected $fillable = ['approved'];
-    protected $appends = ['images'];
-    public function getImagesAttribute()
+    protected $fillable = ['name', 'description', 'prep_time', 'servings', 'difficulty', 'rating', 'approved', 'site_id', 'image_path'];
+    public function getImageUrl()
     {
-        $paths = Storage::disk('s3')->files('recipe_images/'.$this->id);
-        $images = array();
-        foreach($paths as $path)
-        {
-            $images[] = Storage::disk('s3')->temporaryUrl($path, now()->addMinutes(5));
-        }
-        return $images;
+        return Storage::disk('s3')->temporaryUrl($this->image_path, now()->addMinutes(5));
     }
 
     public function Nutrition()

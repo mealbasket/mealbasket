@@ -7,10 +7,9 @@ use Storage;
 
 class Ingredient extends Model
 {
-    protected $appends = ['image'];
-    public function getImageAttribute()
+    public function getImageUrl()
     {
-        return Storage::disk('s3')->temporaryUrl('ingredient_images/'.$this->id.'.png', now()->addMinutes(5));
+        return Storage::disk('s3')->temporaryUrl($this->image_path, now()->addMinutes(5));
     }
 
     public function Unit()

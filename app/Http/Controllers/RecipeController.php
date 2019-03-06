@@ -25,7 +25,7 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        $recipes = Recipe::select('id', 'name', 'approved')->approved()->paginate(30);
+        $recipes = Recipe::select('id', 'name', 'approved', 'image_path')->approved()->paginate(30);
         return view('recipe.index')->with('recipes', $recipes);
     }
 

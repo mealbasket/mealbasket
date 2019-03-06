@@ -21,10 +21,10 @@ class CreateRecipesTable extends Migration
             $table->integer('prep_time');
             $table->integer('servings');
             $table->integer('difficulty');
-            $table->decimal('rating', 4, 2);
+            $table->decimal('rating', 4, 2)->nullable();
             $table->boolean('approved');
             $table->string('site_id')->unique();
-            $table->integer('category_id');            
+            $table->string('image_path');          
         });
     }
 

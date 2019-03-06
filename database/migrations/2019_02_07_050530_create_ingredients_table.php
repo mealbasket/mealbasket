@@ -21,6 +21,7 @@ class CreateIngredientsTable extends Migration
             $table->foreign('unit_id')->references('id')->on('units');
             $table->integer('price');
             $table->integer('base_quantity');
+            $table->string('image_path');
         });
     }
 

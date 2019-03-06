@@ -26,28 +26,7 @@
   </div>
 
   <div class="col-md-5 col-md-offset-1">
-    <div class="carousel slide" id="carousel-983258">
-      <ol class="carousel-indicators">
-        @foreach ($recipe->Images as $img)
-        <li data-slide-to="{{ $loop->index }}" data-target="#carousel-983258" class="active"></li>
-        @endforeach
-      </ol>
-      <div class="carousel-inner">
-        @foreach ($recipe->Images as $img)
-        <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-          <img class="d-block w-100" src="{{ $img }}">
-        </div>
-        @endforeach
-      </div>
-      <a class="carousel-control-prev" href="#carousel-983258" data-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#carousel-983258" data-slide="next">
-        <span class="carousel-control-next-icon"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
+    <img class="d-block w-100" src="{{ $recipe->getImageUrl() }}">
   </div>
   </div>
 
@@ -72,7 +51,7 @@
     <h2>Method</h2>
     @foreach ($recipe->Steps as $step)
     <h5>Step {{$step->id}}</h5>
-    <img class="recipeImage py-2" src={{$step->Image}}>
+    <img class="recipeImage py-2" src={{$step->getImageUrl()}}>
     <p>{{$step->text}}</p>
     @endforeach
   </div>

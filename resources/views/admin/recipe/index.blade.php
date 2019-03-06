@@ -5,7 +5,7 @@
   <div class="row">
     @foreach($recipes as $recipe)
     <div class="col-6 col-md-2 py-2">
-      <div class="card ingOrRecipeCard">
+      <div class="card ingOrRecipeCard" style="min-width: 160px!important;">
         <p class="card-title font-weight-bold text-center mt-3">{{$recipe->name}}</p>
         @if($recipe->isApproved())
         <a class="btnAdmin btn btn-warning" href="#" role="button" onclick="document.getElementById('approval-form').submit();">Disapprove</a>

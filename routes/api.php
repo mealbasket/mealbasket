@@ -13,11 +13,8 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::namespace('Api')->group(function () { 
-    Route::apiResource('recipe', 'RecipeApiController');
-    Route::get('recipe/check/{site_id}', 'RecipeApiController@checkBySiteId');
-
-    Route::post('tags', 'RecipeApiController@storeTags');
-    Route::post('nutrition', 'RecipeApiController@storeNutrition');
-    Route::post('steps', 'RecipeApiController@storeSteps');
-});
+Route::get('recipe/check/{site_id}', 'ApiController@checkBySiteId');
+Route::post('recipe', 'ApiController@storeRecipe');
+Route::post('tags', 'ApiController@storeTags');
+Route::post('nutrition', 'ApiController@storeNutrition');
+Route::post('steps', 'ApiController@storeSteps');

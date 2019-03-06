@@ -8,6 +8,17 @@ use Storage;
 class Recipe extends Model
 {
     protected $fillable = ['name', 'description', 'prep_time', 'servings', 'difficulty', 'rating', 'approved', 'site_id', 'image_path'];
+    
+    public function getPriceAttribute()
+    {
+        $price = 0;
+        foreach($this->Ingredients as $ing)
+        {
+            $price += $ing->price;
+        }
+        return $price;
+    }
+
     public function getImageUrl()
     {
         return Storage::disk('s3')->temporaryUrl($this->image_path, now()->addMinutes(5));

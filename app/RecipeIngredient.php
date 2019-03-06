@@ -13,4 +13,11 @@ class RecipeIngredient extends Pivot
     {
         return $this->hasOne('App\Units', 'id', 'unit_id');
     }
+
+    public function getValueAttribute($value)
+    {
+        if($value==0)
+            $value="to taste";
+        return $value;
+    }
 }

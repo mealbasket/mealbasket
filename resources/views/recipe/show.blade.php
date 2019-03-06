@@ -9,6 +9,7 @@
         <span id=stars><script>document.getElementById("stars").innerHTML = getStars({{$recipe->rating}});</script></span>
       </p>
       <p>{{$recipe->description}}</p>
+      <h4>₹{{$recipe->price}}/-</h4>
       <p>
         <a href=""><button class="btn btn-success" type="button">Buy Now</button></a>
         <a href=""><button class="btn btn-warning" type="button">Add to Cart</button></a>
@@ -37,10 +38,11 @@
       @foreach ($recipe->Ingredients as $ing)
       <li class="list-item">
         <div class="form-check">
-          <label class="form-check-label">
-              <input type="checkbox" class="form-check-input" value="">
-            {{ $ing->name }}
-          </label>
+          <input type="checkbox" class="form-check-input" value="">
+          <div class="row">
+            <div class="col-md-4">{{ $ing->name }}</div>
+            <div class="col-md-3">{{ $ing->pivot->value }} {{ $ing->pivot->Unit->unit_short}}</div>
+          </div>
         </div>
       </li>
       @endforeach

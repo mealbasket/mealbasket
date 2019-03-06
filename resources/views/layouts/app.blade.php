@@ -111,7 +111,7 @@
         @yield('content')
       </main>
     </div>
-    <footer class="mt-5 row justify-content-center">
+    <footer class="my-5 row justify-content-center">
       <div>© Copyright 2019 MealBasket</div>
     </footer>
     @yield('pagespecificscripts')

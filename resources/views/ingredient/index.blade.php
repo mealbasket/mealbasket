@@ -9,7 +9,7 @@
         <div class="card-block text-center py-2">
           <img src="{{$ingredient->getImageUrl()}}" alt="{{$ingredient->name}}" style="height: 150px; width: auto;">
           <p class="card-title font-weight-bold">{{$ingredient->name}}</p>
-          <p class="card-title font-weight-bold">{{$ingredient->base_quantity}} {{$ingredient->Unit->unit_full}}</p>
+          <p class="card-title font-weight-bold">{{$ingredient->base_quantity}} {{$ingredient->Unit->unit_short}}</p>
           <p id="ingprice-{{ $ingredient->id }}" class="card-title font-weight-bold">₹{{$ingredient->price}}</p>
           <input id="ingip-{{ $ingredient->id }}" type="number" value="1" min="1" max="10" step="1"/>
           <script>

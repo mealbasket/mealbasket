@@ -15,7 +15,7 @@ class CreateRecipeTagTable extends Migration
     {
         Schema::create('recipe_tag', function (Blueprint $table) {
             $table->unsignedInteger('recipe_id');
-            $table->foreign('recipe_id')->references('id')->on('recipes');
+            $table->foreign('recipe_id')->references('id')->on('recipes')->onDelete('cascade');
             $table->unsignedInteger('tag_id');
             $table->foreign('tag_id')->references('id')->on('tags');
         });

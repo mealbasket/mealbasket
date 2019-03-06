@@ -19,4 +19,5 @@ Route::namespace('Api')->group(function () {
 
     Route::post('tags', 'RecipeApiController@storeTags');
     Route::post('nutrition', 'RecipeApiController@storeNutrition');
+    Route::post('steps', 'RecipeApiController@storeSteps');
 });

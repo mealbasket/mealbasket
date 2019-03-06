@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Recipe;
 use App\Tag;
+use App\Units;
+use App\Nutrition;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -93,6 +95,22 @@ class RecipeApiController extends Controller
             $t[] = $temp->id;
         }
         $r->Tags()->sync($t);
+        $r->save();
+        return response()->json(['success' => 'true', 'id' => $r->id], 200);
+    }
+
+    public function storeNutrition(Request $request)
+    {
+        $id = $request->json()->get('id');
+        $nutrition = $request->json()->get('nutrition');
+        $r = Recipe::find($id);
+        $n = array();
+        foreach ($nutrition as $nut) {
+            $temp1 = Nutrition::firstOrCreate(['name' => $nut['name']]);
+            $temp2 = Units::firstOrCreate(['unit_short' => $nut['unit']]);
+            $n[$temp1->id] = ['unit_id'=>$temp2->id, 'value'=>$nut['value']];
+        }
+        $r->Nutrition()->sync($n);
         $r->save();
         return response()->json(['success' => 'true', 'id' => $r->id], 200);
     }

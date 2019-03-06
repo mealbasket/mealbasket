@@ -18,7 +18,7 @@
         <span class="recipeSpans fas fa-chart-pie"> {{$recipe->servings}}</span>
         @foreach ($recipe->Nutrition as $nutr)
           @if( $nutr->name == "Calories" )
-            <span class="recipeSpans fab fa-nutritionix"> {{ $nutr->value }} {{ $nutr->Unit->unit_short }}</span>
+            <span class="recipeSpans fab fa-nutritionix"> {{ $nutr->pivot->value }} {{ $nutr->pivot->Unit->unit_short }}</span>
           @endif
         @endforeach
       </p>

@@ -18,4 +18,5 @@ Route::namespace('Api')->group(function () {
     Route::get('recipe/check/{site_id}', 'RecipeApiController@checkBySiteId');
 
     Route::post('tags', 'RecipeApiController@storeTags');
+    Route::post('nutrition', 'RecipeApiController@storeNutrition');
 });

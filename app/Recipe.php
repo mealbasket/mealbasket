@@ -15,7 +15,7 @@ class Recipe extends Model
 
     public function Nutrition()
     {
-        return $this->hasMany('App\RecipeNutrition', 'recipe_id', 'id');
+        return $this->belongsToMany('App\Nutrition', 'recipe_nutrition')->using('App\RecipeNutrition')->withPivot(['unit_id', 'value'])->withTimestamps();
     }
 
     public function Steps()

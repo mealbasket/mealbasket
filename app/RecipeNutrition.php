@@ -2,11 +2,12 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class RecipeNutrition extends Model
+class RecipeNutrition extends Pivot
 {
     protected $table = 'recipe_nutrition';
+    public $timestamps = true;
 
     public function Unit()
     {

@@ -9,7 +9,6 @@
         <span id=stars><script>document.getElementById("stars").innerHTML = getStars({{$recipe->rating}});</script></span>
       </p>
       <p>{{$recipe->description}}</p>
-      <h4>₹{{$recipe->price}}/-</h4>      
       <p>
         <a href=""><button class="btn btn-success" type="button">Buy Now</button></a>
         <a href=""><button class="btn btn-warning" type="button">Add to Cart</button></a>

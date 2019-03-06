@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Recipe;
+use App\Tag;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -79,5 +80,20 @@ class RecipeApiController extends Controller
         {
             return response()->json(['exists' => 'false'], 404);
         }
+    }
+
+    public function storeTags(Request $request)
+    {
+        $id = $request->json()->get('id');
+        $tags = $request->json()->get('tags');
+        $r = Recipe::find($id);
+        $t = array();
+        foreach ($tags as $tag) {
+            $temp = Tag::firstOrCreate(['name' => $tag]);
+            $t[] = $temp->id;
+        }
+        $r->Tags()->sync($t);
+        $r->save();
+        return response()->json(['success' => 'true', 'id' => $r->id], 200);
     }
 }

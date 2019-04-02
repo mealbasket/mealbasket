@@ -35,6 +35,7 @@ Route::post('/search', 'SearchController@search');
 Route::resource('ingredients', 'IngredientController');
 Route::resource('recipes', 'RecipeController');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::put('/home/changepw', 'HomeController@changepw');
 
 Route::get('/admin', 'AdminController@index')->name('admin');
 Route::get('/admin/recipes', 'AdminController@recipe');

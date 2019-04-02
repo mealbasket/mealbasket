@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
@@ -24,6 +25,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('user.home');
+    }
+
+    public function changepw(Request $request)
+    {
+        $this->validate($request, [
+            'password' => 'required|string|min:6|confirmed'
+        ]);
+        $user = Auth::User();
+        $user->password = Hash::make($request['password']);
+        $user->save();
+        return redirect('/home')->with('success', 'Password changed');
     }
 }

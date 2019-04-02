@@ -11,8 +11,17 @@
       <p>{{$recipe->description}}</p>
       <h4>₹{{$recipe->price}}/-</h4>
       <p>
-        <a href=""><button class="btn btn-success" type="button">Buy Now</button></a>
-        <a href=""><button class="btn btn-warning" type="button">Add to Cart</button></a>
+      <button type="button" class="btn btn-warning" onclick="event.preventDefault();document.getElementById('addToCart').submit();">Add To Cart</button>
+      <form id="addToCart" action="/cart" method="POST" style="display: none;">
+        @csrf
+        <input type="hidden" name="type" value="recipe">
+        <input type="hidden" name="id" value={{$recipe->id}}>
+        <!--TBD:Get actual servings of recipe here-->
+        <input type="hidden" name="quantity" value="4">
+      </form>
+
+
+
       </p>
       <p style="font-size: 1.25rem;">
         <span class="recipeSpans far fa-clock"> {{$recipe->prep_time}}</span>

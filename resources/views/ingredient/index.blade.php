@@ -18,7 +18,14 @@
             $('#ingprice-{{ $ingredient->id }}').text('₹' + value.toString());
           })
           </script>
-          <button type="button" class="mt-auto btn btn-warning">Add To Cart</button>
+          <button type="button" class="mt-auto btn btn-warning" onclick="event.preventDefault();document.getElementById('addToCart-{{ $ingredient->id }}').submit();">Add To Cart</button>
+          <form id="addToCart-{{ $ingredient->id }}" action="/cart" method="POST" style="display: none;">
+            @csrf
+            <input type="hidden" name="type" value="ingredient">
+            <input type="hidden" name="id" value={{$ingredient->id}}>
+            <!--TBD:Get actual quantity of ingredient here-->
+            <input type="hidden" name="quantity" value="4">
+          </form>
         </div>
       </div>
     </div>

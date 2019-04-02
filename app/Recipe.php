@@ -14,8 +14,15 @@ class Recipe extends Model
         $price = 0;
         foreach($this->Ingredients as $ing)
         {
-            $price += $ing->price;
+            if($ing->pivot->value>0)
+                $price += $ing->pivot->scaledPrice($this->servings);
         }
+        return $price;
+    }
+
+    public function scaledPrice($servings)
+    {
+        $price = ($this->price / $this->servings) * $servings;
         return $price;
     }
 

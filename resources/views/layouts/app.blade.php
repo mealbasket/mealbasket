@@ -99,7 +99,7 @@
                   @endguest
                 </li>
                 <li class="mt-2 ml-1 nav-item">
-                  <a href="#"><img id="cartIcon" border="0" src="{{ asset('/img/cart.png') }}" width="40" height="40"></a>
+                  <a href="/cart"><img id="cartIcon" border="0" src="{{ asset('/img/cart.png') }}" width="40" height="40"></a>
                 </li>
               </ul>
             </nav>

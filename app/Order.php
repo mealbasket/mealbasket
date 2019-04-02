@@ -13,10 +13,10 @@ class Order extends Model
         return $this->belongsTo('App\OrderStatus', 'status_id', 'id');
     }
 
-    public function scopeCart($query)
+    public function scopeCart($query, $status)
     {
-        return $query->whereHas('Status', function($q){
-            $q->where('name', '=', 'cart');
+        return $query->whereHas('Status', function($q) use($status){
+            $q->where('name', $status, 'cart');
         });
     }
 

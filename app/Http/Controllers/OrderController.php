@@ -18,7 +18,7 @@ class OrderController extends Controller
 
     public function cart()
     {
-        $cart = Auth::User()->Orders()->cart()->first();
+        $cart = Auth::User()->Orders()->cart('=')->first();
         return view('cart')->with('cart', $cart);
     }
 
@@ -29,7 +29,7 @@ class OrderController extends Controller
             'id' => 'required|integer',
             'quantity' => 'required|integer'
         ]);
-        $order = Auth::User()->Orders()->cart()->firstOrNew([]);
+        $order = Auth::User()->Orders()->cart('=')->firstOrNew([]);
         $order->user_id = Auth::User()->id;
         $order->address_id = Auth::User()->Addresses()->default()->first()->id;
         $order->status_id = OrderStatus::where('name', '=', 'cart')->first()->id;

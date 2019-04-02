@@ -36,6 +36,10 @@ Route::resource('ingredients', 'IngredientController');
 Route::resource('recipes', 'RecipeController');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::put('/home/changepw', 'HomeController@changepw');
+Route::get('/home/address', 'HomeController@showAddress');
+Route::post('/home/address', 'HomeController@addAddress');
+Route::delete('/home/address', 'HomeController@deleteAddress');
+Route::put('/home/address', 'HomeController@primaryAddress');
 
 Route::get('/admin', 'AdminController@index')->name('admin');
 Route::get('/admin/recipes', 'AdminController@recipe');

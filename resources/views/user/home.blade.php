@@ -9,8 +9,8 @@
                     <p>Welcome back, {{Auth::User()->name}}</p>
                     <p>Email: {{Auth::User()->email}}</p>
                     <p>Customer since {{Auth::User()->created_at->format('jS F, Y')}}</p>
-                    <a class="btn btn-primary" data-toggle="collapse" href="#changepassword" role="button" aria-expanded="false" aria-controls="collapseExample">Change password</a>
-                    <a class="btn btn-primary" href="#" role="button">My Addresses</a>
+                    <a class="btn btn-primary" data-toggle="collapse" href="#changepassword" role="button">Change password</a>
+                    <a class="btn btn-primary" href="/home/address" role="button">My Addresses</a>
                     <a class="btn btn-primary" href="#" role="button">My Orders</a>
                     <form action="/home/changepw" class="pt-4 collapse" id="changepassword" method="POST">
                         @csrf

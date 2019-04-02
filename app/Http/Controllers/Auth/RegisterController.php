@@ -54,8 +54,8 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:6', 'confirmed'],
             'line1' => ['required', 'max:255', 'string'],
             'line2' => ['nullable', 'max:255', 'string'],
-            'city' => ['required', 'string'],
-            'state' => ['required', 'string'],
+            'city' => ['required', 'max:255', 'string'],
+            'state' => ['required', 'max:255', 'string'],
             'pincode' => ['required', 'numeric', 'digits:6'],
             'phone_number' => ['required', 'numeric', 'digits:10'],
         ]);

@@ -53,6 +53,73 @@
                         </div>
                     </div>
 
+                    <div class="form-group row">
+                        <label for="line1" class="col-md-4 col-form-label text-md-right">Address</label>
+
+                        <div class="col-md-6">
+                            <input id="line1" type="text" class="form-control{{ $errors->has('line1') ? ' is-invalid' : '' }}" name="line1" value="{{ old('line1') }}"
+                                required autofocus> @if ($errors->has('line1'))
+                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('line1') }}</strong>
+                                    </span> @endif
+
+                            <input id="line2" type="text" class="mt-1 form-control{{ $errors->has('line2') ? ' is-invalid' : '' }}" name="line2" value="{{ old('line2') }}"
+                                autofocus> @if ($errors->has('line2'))
+                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('line2') }}</strong>
+                                    </span> @endif
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="city" class="col-md-4 col-form-label text-md-right">City</label>
+
+                        <div class="col-md-6">
+                            <input id="city" type="text" class="form-control{{ $errors->has('city') ? ' is-invalid' : '' }}" name="city" value="{{ old('city') }}"
+                                required autofocus> @if ($errors->has('city'))
+                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('city') }}</strong>
+                                    </span> @endif
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="state" class="col-md-4 col-form-label text-md-right">State</label>
+
+                        <div class="col-md-6">
+                            <input id="state" type="text" class="form-control{{ $errors->has('state') ? ' is-invalid' : '' }}" name="state" value="{{ old('state') }}"
+                                required autofocus> @if ($errors->has('state'))
+                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('state') }}</strong>
+                                    </span> @endif
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="pincode" class="col-md-4 col-form-label text-md-right">Pincode</label>
+
+                        <div class="col-md-6">
+                            <input id="pincode" type="text" class="form-control{{ $errors->has('pincode') ? ' is-invalid' : '' }}" name="pincode" value="{{ old('pincode') }}"
+                                required autofocus> @if ($errors->has('pincode'))
+                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('pincode') }}</strong>
+                                    </span> @endif
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="phone_number" class="col-md-4 col-form-label text-md-right">Phone No.</label>
+
+                        <div class="col-md-6">
+                            <input id="phone_number" type="text" class="form-control{{ $errors->has('phone_number') ? ' is-invalid' : '' }}" name="phone_number" value="{{ old('phone_number') }}"
+                                required autofocus> @if ($errors->has('phone_number'))
+                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('phone_number') }}</strong>
+                                    </span> @endif
+                        </div>
+                    </div>
+
+
                     <div class="form-group row mb-0">
                         <div class="col-md-6 offset-md-4">
                             <button type="submit" class="btn btn-primary">
@@ -60,6 +127,7 @@
                                 </button>
                         </div>
                     </div>
+
                 </form>
             </div>
         </div>

@@ -37,4 +37,9 @@ class User extends Authenticatable
     {
         return $this->role()->where('name', $role)->exists();
     }
+
+    public function Addresses()
+    {
+        return $this->hasMany('App\Address', 'user_id', 'id');
+    }
 }

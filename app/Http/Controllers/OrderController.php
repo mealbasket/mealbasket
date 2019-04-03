@@ -37,15 +37,29 @@ class OrderController extends Controller
         $order->save();
         if($request->type=='recipe')
         {
-            $recipe = Recipe::find($request->id);
-            $price = $recipe->scaledPrice($request->quantity);
-            $order->Recipes()->attach($recipe, ['servings' => $request->quantity, 'price'=> $price]);
+            $r = $order->Recipes()->find($request->id);
+            if($r!=""){
+                $request->quantity += $r->pivot->servings;
+                $this->changeQuantity($request);
+            }
+            else{
+                $recipe = Recipe::find($request->id);
+                $price = $recipe->scaledPrice($request->quantity);
+                $order->Recipes()->attach($recipe, ['servings' => $request->quantity, 'price'=> $price]);
+            }
         }
         else
         {
-            $ingredient = Ingredient::find($request->id);
-            $price = $ingredient->price * $request->quantity;
-            $order->Ingredients()->attach($ingredient, ['quantity' => $request->quantity, 'price'=> $price]);
+            $i = $order->Ingredients()->find($request->id);
+            if($i!=""){
+                $request->quantity += $i->pivot->quantity;
+                $this->changeQuantity($request);
+            }
+            else{
+                $ingredient = Ingredient::find($request->id);
+                $price = $ingredient->price * $request->quantity;
+                $order->Ingredients()->attach($ingredient, ['quantity' => $request->quantity, 'price'=> $price]);
+            }
         }
         return redirect('/cart');
     }

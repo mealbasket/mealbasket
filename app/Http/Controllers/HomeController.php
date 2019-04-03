@@ -99,7 +99,7 @@ class HomeController extends Controller
 
     public function showOrders()
     {
-        $orders = Auth::User()->Orders()->cart('<>')->get();
+        $orders = Auth::User()->Orders()->cart('<>')->get()->sortByDesc('created_at');
         return view('user.orders')->with('orders', $orders);
     }
 

@@ -11,7 +11,17 @@
         <div class="card">
             <div class="card-header">
                 Order #{{$order->id}}
-                <div id="steps" class="py-2" style="position: sticky;"></div>
+                <div id="steps-head-{{$order->id}}" class="py-2" style="position: sticky;"></div>
+
+                <script>
+                        $('#steps-head-{{$order->id}}').append("<div id='steps-{{$order->id}}'></div>");
+                        $('#steps-{{$order->id}}').progressbar({
+                      // ~: failed
+                      // @: current
+                      steps: ['@Payment Pending', 'Processing', 'Dispatched', 'Delivered',]
+                    });
+                </script>
+
                 <button class="btn btn-primary float-right mx-1" onclick="event.preventDefault();document.getElementById('delete-{{$order->id}}').submit();">Cancel</button>
                 <button class="btn btn-success float-right mx-1" disabled>Payment Pending</button>
                 <form id="delete-{{$order->id}}" action="/home/orders" method="POST" style="display: none;">
@@ -68,7 +78,7 @@
 
                     <tfoot>
                         <tr>
-                            <td colspan="2" class="hidden-xs"></td>
+                            <td colspan="3" class="hidden-xs"></td>
                             <td class="hidden-xs text-center"><strong>Total ₹{{$order->total}}</strong></td>
                         </tr>
                     </tfoot>
@@ -83,10 +93,19 @@
 
 @section('pagespecificscripts')
 <script>
-    $('#steps').progressbar({
-  // ~: failed
-  // @: current
-  steps: ['@Payment Pending', 'Processing', 'Dispatched', 'Delivered',]
+
+function updatePBar(orderid, step){
+    $("#steps-" + orderid).remove();
+    $("#steps-head-" + orderid).append("<div id='steps-"+ orderid + "'" + "></div>");
+    switch(step) {
+        case 1: var steps1 = ['@Payment Pending', 'Processing', 'Dispatched', 'Delivered',]; break;
+        case 2: var steps1 = ['Payment Pending', '@Processing', 'Dispatched', 'Delivered',]; break;
+        case 3: var steps1 = ['Payment Pending', 'Processing', '@Dispatched', 'Delivered',]; break;
+        case 4: var steps1 = ['Payment Pending', 'Processing', 'Dispatched', '@Delivered',]; break;
+    }
+    $("#steps-" + orderid).progressbar({
+  steps: steps1
 });
+}
     </script>
 @endsection

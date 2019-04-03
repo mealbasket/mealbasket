@@ -25,7 +25,12 @@
       </p>
       <p style="font-size: 1.25rem;">
         <span class="recipeSpans far fa-clock"> {{$recipe->prep_time}}</span>
-        <span class="recipeSpans fas fa-chart-pie"> {{$recipe->servings}}</span>
+
+      <span class="recipeSpans fas fa-chart-pie">
+        <input id="recipeServingsSpinner" type="number" value="{{$recipe->servings}}" min="1" max="10" step="1" onchange="updateServings();"/>
+      </span>
+        
+
         @foreach ($recipe->Nutrition as $nutr)
           @if( $nutr->name == "Calories" )
             <span class="recipeSpans fab fa-nutritionix"> {{ $nutr->pivot->value }} {{ $nutr->pivot->Unit->unit_short }}</span>
@@ -47,10 +52,10 @@
       @foreach ($recipe->Ingredients as $ing)
       <li class="list-item">
         <div class="form-check">
-          <input type="checkbox" class="form-check-input" value="">
+          {{-- <input type="checkbox" class="form-check-input" value=""> --}}
           <div class="row">
             <div class="col-md-4">{{ $ing->name }}</div>
-            <div class="col-md-3">{{ $ing->pivot->value }} {{ $ing->pivot->Unit->unit_short}}</div>
+            <div data-internalServings="{{$recipe->servings}}" data-internalQ="{{ $ing->pivot->value }}" class="col-md-3 ingredientItem">{{ $ing->pivot->value }} {{ $ing->pivot->Unit->unit_short}}</div>
           </div>
         </div>
       </li>
@@ -72,5 +77,23 @@
 @endsection
 
 @section('pagespecificscripts')
-    
+    <script>
+      function updateServings() {
+        var q = document.getElementById('recipeServingsSpinner').value;
+        if(q < 1 || q > 10) {
+          q = 1;
+          document.getElementById('recipeServingsSpinner').value = 1;
+        }
+        var list = document.getElementsByClassName('ingredientItem');
+        for(var i=0; i < list.length; i++) {
+          var str = list[i].innerHTML;
+          if(list[i].innerHTML != "to taste ") {
+            str = parseInt(list[i].getAttribute('data-internalQ')) / parseInt(list[i].getAttribute('data-internalServings')) * q;
+            var newValue = str.toString() + " " + list[i].innerHTML.substr(list[i].innerHTML.indexOf(' ')+1);
+            document.getElementsByClassName('ingredientItem')[i].innerHTML = newValue;
+            document.getElementById('addToCart').elements["quantity"].value=str;
+          }
+        }
+      }
+    </script>
 @endsection

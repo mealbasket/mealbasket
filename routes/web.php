@@ -40,6 +40,8 @@ Route::get('/home/address', 'HomeController@showAddress');
 Route::post('/home/address', 'HomeController@addAddress');
 Route::delete('/home/address', 'HomeController@deleteAddress');
 Route::put('/home/address', 'HomeController@primaryAddress');
+Route::get('/home/orders', 'HomeController@showOrders');
+Route::delete('/home/orders', 'HomeController@cancelOrder');
 
 Route::get('/admin', 'AdminController@index')->name('admin');
 Route::get('/admin/recipes', 'AdminController@recipe');

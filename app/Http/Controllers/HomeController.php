@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Address;
+use App\OrderStatus;
 
 class HomeController extends Controller
 {
@@ -94,5 +95,23 @@ class HomeController extends Controller
         $address->default = 1;
         $address->save();
         return redirect('/home/address')->with('success', 'Primary address updated');
+    }
+
+    public function showOrders()
+    {
+        $orders = Auth::User()->Orders;
+        return view('user.orders')->with('orders', $orders);
+    }
+
+    public function cancelOrder(Request $request)
+    {
+        $this->validate($request, [
+            'id' => 'required|numeric|exists:orders,id'
+        ]);
+        $order = Auth::User()->Orders()->find($request->id);
+        if($order->Status->id >= OrderStatus::where('name', '=', 'dispatched')->first()->id)
+            return redirect('/home/orders')->with('error', 'Order cannot be cancelled');
+        $order->delete();
+        return redirect('/home/orders')->with('success', 'Order cancelled');
     }
 }

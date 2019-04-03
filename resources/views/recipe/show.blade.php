@@ -9,15 +9,14 @@
         <span id=stars><script>document.getElementById("stars").innerHTML = getStars({{$recipe->rating}});</script></span>
       </p>
       <p>{{$recipe->description}}</p>
-      <h4>₹{{$recipe->price}}/-</h4>
+      <h4>₹<span data-orgPrice="{{$recipe->price}}" id="recipe-price">{{$recipe->price}}</span>/-</h4>
       <p>
       <button type="button" class="btn btn-warning" onclick="event.preventDefault();document.getElementById('addToCart').submit();">Add To Cart</button>
       <form id="addToCart" action="/cart" method="POST" style="display: none;">
         @csrf
         <input type="hidden" name="type" value="recipe">
         <input type="hidden" name="id" value={{$recipe->id}}>
-        <!--TBD:Get actual servings of recipe here-->
-        <input type="hidden" name="quantity" value="{{$recipe->servings}}">
+        <input type="hidden" name="quantity" value="1">
       </form>
 
 
@@ -27,7 +26,7 @@
         <span class="recipeSpans far fa-clock"> {{$recipe->prep_time}}</span>
 
       <span class="recipeSpans fas fa-chart-pie">
-        <input id="recipeServingsSpinner" type="number" value="{{$recipe->servings}}" min="1" max="10" step="1" onchange="updateServings();"/>
+        <input id="recipeServingsSpinner" type="number" value="1" min="1" max="10" step="1" onclick="updateServings();"/>
       </span>
         
 
@@ -55,7 +54,11 @@
           {{-- <input type="checkbox" class="form-check-input" value=""> --}}
           <div class="row">
             <div class="col-md-4">{{ $ing->name }}</div>
-            <div data-internalServings="{{$recipe->servings}}" data-internalQ="{{ $ing->pivot->value }}" class="col-md-3 ingredientItem">{{ $ing->pivot->value }} {{ $ing->pivot->Unit->unit_short}}</div>
+            @if($ing->pivot->value>0)
+            <div data-internalServings="{{$recipe->servings}}" data-internalQ="{{ $ing->pivot->value }}" class="col-md-3 ingredientItem">{{ $ing->pivot->scaledQuantity(1) }} {{ $ing->pivot->Unit->unit_short}}</div>
+            @else
+            <div class="col-md-3 ingredientItemNonScalable">{{ $ing->pivot->value }} {{ $ing->pivot->Unit->unit_short}}</div>
+            @endif
           </div>
         </div>
       </li>
@@ -88,10 +91,12 @@
         for(var i=0; i < list.length; i++) {
           var str = list[i].innerHTML;
           if(list[i].innerHTML != "to taste ") {
-            str = parseInt(list[i].getAttribute('data-internalQ')) / parseInt(list[i].getAttribute('data-internalServings')) * q;
+            str = Math.ceil(parseInt(list[i].getAttribute('data-internalQ')) / parseInt(list[i].getAttribute('data-internalServings')) * q);
             var newValue = str.toString() + " " + list[i].innerHTML.substr(list[i].innerHTML.indexOf(' ')+1);
             document.getElementsByClassName('ingredientItem')[i].innerHTML = newValue;
-            document.getElementById('addToCart').elements["quantity"].value=str;
+            document.getElementById('addToCart')['quantity'].value=q;
+            var o = document.getElementById('recipe-price').getAttribute('data-orgprice');
+            document.getElementById('recipe-price').textContent = o * q;
           }
         }
       }

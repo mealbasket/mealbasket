@@ -48,4 +48,9 @@ class Order extends Model
     {
         return $this->belongsTo('App\Address');
     }
+
+    public function User()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

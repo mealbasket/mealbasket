@@ -45,6 +45,8 @@ Route::delete('/home/orders', 'HomeController@cancelOrder');
 
 Route::get('/admin', 'AdminController@index')->name('admin');
 Route::get('/admin/recipes', 'AdminController@recipe');
+Route::get('/admin/orders', 'AdminController@orders');
+Route::put('/admin/orders', 'AdminController@changeOrder');
 
 Route::get('/cart', 'OrderController@cart');
 Route::post('/cart', 'OrderController@add');

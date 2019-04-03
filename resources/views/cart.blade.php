@@ -13,7 +13,7 @@
         <th style="width:10%">Price</th>
         <th style="width:8%">Quantity</th>
         <th style="width:15%" class="text-center">Subtotal</th>
-        <th style="width:17%">Empty Cart <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>		</th>
+        <th style="width:17%"><button class="btn btn-danger btn-sm" onclick="updateQuantity(0, 'cart', 0)"><i class="fa fa-trash-o"> Delete All</i></button>		</th>
       </tr>
     </thead>
     <tbody>
@@ -30,12 +30,12 @@
         </td>
         <td data-th="Price">₹{{$i->price}}</td>
         <td data-th="Quantity">
-          <input type="number" class="form-control text-center" value="{{$i->pivot->quantity}}" min="1" max="10" step="1"><!--TBD: editable, when clicked away submit a post form, similar to addToCart-->
+          <input type="number" class="form-control text-center" value="{{$i->pivot->quantity}}" min="1" max="10" step="1" onchange="updateQuantity({{$i->id}}, 'ingredient', this.value)">
         </td>
         <td data-th="Subtotal" class="text-center">₹{{$i->pivot->price}}</td>
         <td class="actions" data-th="">
-            <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
-            <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>								
+            <!--<button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>-->
+            <button class="btn btn-danger btn-sm" onclick="updateQuantity({{$i->id}}, 'ingredient', 0)"><i class="fa fa-trash-o"></i></button>								
         </td>
       </tr>
       @endforeach
@@ -60,12 +60,12 @@
           </td>
           <td data-th="Price">₹{{$r->price}}</td>
           <td data-th="Quantity">
-            <input type="number" class="form-control text-center" value="{{$r->pivot->servings}}" min="1" max="10" step="1"><!--TBD: editable, when clicked away submit a post form, similar to addToCart-->
+            <input type="number" class="form-control text-center" value="{{$r->pivot->servings}}" min="1" max="10" step="1" onchange="updateQuantity({{$r->id}}, 'recipe', this.value)">
           </td>
           <td data-th="Subtotal" class="text-center">₹{{$r->pivot->price}}</td>
           <td class="actions" data-th="">
-              <button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
-              <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>								
+              <!--<button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>-->
+              <button class="btn btn-danger btn-sm" onclick="updateQuantity({{$r->id}}, 'recipe', 0)"><i class="fa fa-trash-o"></i></button>
           </td>
       </tr>
       @endforeach
@@ -75,26 +75,58 @@
       <tr>
         <td>
         <h4 style="display: inline;">Address:   </h4>
-          <select style="width: 50%;">
-              <option value="ad1">ad1</option>
-              <option value="ad2">ad2</option>
-              <option value="ad3">ad3</option>
-              <option value="ad4">ad4</option>
+          <select id="address-select" style="width: 50%;" onchange="updateAddress()">
+              <option value="{{$cart->Address->id}}" selected>{{$cart->Address->line1}}</option>
+              @foreach ($addresses as $address)
+                @if($address->id == $cart->Address->id)
+                  @continue
+                @endif
+                <option value="{{$address->id}}">{{$address->line1}}</option>
+              @endforeach
           </select>
         </td>
       </tr>
     
       <tr>
-          <td><a href="#" class="btn btn-warning">Continue Shopping</a></td>
+          <td><a href="/recipes" class="btn btn-warning">Continue Shopping</a></td>
           <td colspan="3" class="hidden-xs"></td>
           <td class="hidden-xs text-center"><strong>Total ₹{{$cart->total}}</strong></td>
-          <td><a href="" class="btn btn-success btn-block">Checkout</a></td>
+          <td><a href="#" class="btn btn-success btn-block">Checkout</a></td>
         </tr>
       </tfoot>
     </table>
   </div>
     @endif
 
-  <!--TBD: buttons for delete item, empty cart, checkout-->
+  <form id="address-change-form" action="/cart/address" method="POST" style="display: none;">
+    @csrf
+    {{method_field('PUT')}}
+    <input id="address-change-id" type="hidden" name="id" value="">
+  </form>
+
+  <form id="qty-change-form" action="/cart/quantity" method="POST" style="display: none;">
+    @csrf
+    {{method_field('PUT')}}
+    <input id="qty-change-id" type="hidden" name="id" value="">
+    <input id="qty-change-type" type="hidden" name="type" value="">
+    <input id="qty-change-val" type="hidden" name="quantity" value="">
+  </form>
+
 </div>
+@endsection
+
+@section('pagespecificscripts')
+    <script>
+      function updateAddress() {
+        var q = document.getElementById("address-select");
+        document.getElementById('address-change-id').value = q[q.selectedIndex].value;
+        document.getElementById('address-change-form').submit();
+      }
+      function updateQuantity(item_id, item_type, item_qty) {
+        document.getElementById('qty-change-id').value = item_id;
+        document.getElementById('qty-change-type').value = item_type;
+        document.getElementById('qty-change-val').value = item_qty;
+        document.getElementById('qty-change-form').submit();
+      }
+    </script>
 @endsection

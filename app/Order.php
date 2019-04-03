@@ -43,4 +43,9 @@ class Order extends Model
         }
         return $total;
     }
+
+    public function Address()
+    {
+        return $this->belongsTo('App\Address');
+    }
 }

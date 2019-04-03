@@ -5,6 +5,7 @@
   @if($cart==null)
     <p>No items in cart</p>
   @else
+  <div style="overflow-x: auto;">
   <table id="cart" class="table table-hover table-condensed">
       <thead>
       <tr>
@@ -21,9 +22,9 @@
       <tr>
         <td data-th="Product">
           <div class="row">
-            <div class="col-sm-3 hidden-xs"><img src="{{$i->getImageUrl()}}" alt="{{$i->name}}" style="height: auto; width: 120px;"/></div>
+            <div class="col-sm-3 hidden-xs"><img class="cartOrderItemImg" src="{{$i->getImageUrl()}}" alt="{{$i->name}}" style="height: auto; width: 120px;"/></div>
             <div class="col-sm-9">
-              <h4 class="nomargin">{{$i->name}}</h4>
+              <h4 class="nomargin cartOrderItemText">{{$i->name}}</h4>
             </div>
           </div>
         </td>
@@ -44,9 +45,9 @@
       <tr>
           <td data-th="Product">
             <div class="row">
-              <div class="col-sm-3 hidden-xs"><img src="{{$r->getImageUrl()}}" alt="{{$r->name}}" style="height: auto; width: 120px;"/></div>
+              <div class="col-sm-3 hidden-xs"><img class="cartOrderItemImg" src="{{$r->getImageUrl()}}" alt="{{$r->name}}" style="height: auto; width: 120px;"/></div>
               <div class="col-sm-9">
-                <h4 class="nomargin">{{$r->name}}</h4>
+                <h4 class="nomargin cartOrderItemText">{{$r->name}}</h4>
                 <p>
                 @foreach ($r->Ingredients as $ri)
                   @if($ri->pivot->value>0)
@@ -85,12 +86,13 @@
     
       <tr>
           <td><a href="#" class="btn btn-warning">Continue Shopping</a></td>
-          <td colspan="2" class="hidden-xs"></td>
+          <td colspan="3" class="hidden-xs"></td>
           <td class="hidden-xs text-center"><strong>Total ₹{{$cart->total}}</strong></td>
           <td><a href="" class="btn btn-success btn-block">Checkout</a></td>
         </tr>
       </tfoot>
     </table>
+  </div>
     @endif
 
   <!--TBD: buttons for delete item, empty cart, checkout-->

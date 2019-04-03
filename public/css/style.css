@@ -66,7 +66,17 @@ footer {
   .ingOrRecipeCard {
     width: auto;
   }
+
+  .cartOrderItemText {
+    font-size: 1.1rem!important;
+  }
+  
+  .cartOrderItemImg {
+    width: 60px!important;
+  }
 } 
+
+
 
 /* PC Screen */
 @media only screen and (min-width: 768px) {
@@ -78,7 +88,17 @@ footer {
   .ingOrRecipeCard {
     width: fit-content;
   }
+
+  .cartOrderItemText {
+    font-size: 1.5rem!important;
+  }
+  
+  .cartOrderItemImg {
+    width: 120px!important;
+  }
 } 
+
+
 
 .btnAdmin {
   margin: 0.25rem auto 0.25rem auto!important;
@@ -111,3 +131,4 @@ footer {
 footer {
   color: grey;
 }
+

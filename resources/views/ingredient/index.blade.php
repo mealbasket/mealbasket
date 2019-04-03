@@ -24,7 +24,6 @@
             @csrf
             <input type="hidden" name="type" value="ingredient">
             <input type="hidden" name="id" value={{$ingredient->id}}>
-            <!--TBD:Get actual quantity of ingredient here-->
             <input type="hidden" name="quantity" value="{{$ingredient->base_quantity}}">
           </form>
         </div>

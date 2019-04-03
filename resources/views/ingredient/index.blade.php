@@ -16,6 +16,7 @@
             $("#ingip-{{ $ingredient->id }}").on("change", function (event) {
             value=parseInt({{$ingredient->price}}) * parseInt($('#ingip-{{ $ingredient->id }}').val());
             $('#ingprice-{{ $ingredient->id }}').text('₹' + value.toString());
+            document.getElementById("addToCart-{{ $ingredient->id }}").elements["quantity"].value = parseInt($('#ingip-{{ $ingredient->id }}').val());
           })
           </script>
           <button type="button" class="mt-auto btn btn-warning" onclick="event.preventDefault();document.getElementById('addToCart-{{ $ingredient->id }}').submit();">Add To Cart</button>
@@ -24,7 +25,7 @@
             <input type="hidden" name="type" value="ingredient">
             <input type="hidden" name="id" value={{$ingredient->id}}>
             <!--TBD:Get actual quantity of ingredient here-->
-            <input type="hidden" name="quantity" value="4">
+            <input type="hidden" name="quantity" value="{{$ingredient->base_quantity}}">
           </form>
         </div>
       </div>

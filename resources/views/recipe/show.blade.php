@@ -17,7 +17,7 @@
         <input type="hidden" name="type" value="recipe">
         <input type="hidden" name="id" value={{$recipe->id}}>
         <!--TBD:Get actual servings of recipe here-->
-        <input type="hidden" name="quantity" value="4">
+        <input type="hidden" name="quantity" value="{{$recipe->servings}}">
       </form>
 
 

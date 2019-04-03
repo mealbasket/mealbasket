@@ -31,7 +31,7 @@ class OrderController extends Controller
         ]);
         $order = Auth::User()->Orders()->cart('=')->firstOrNew([]);
         $order->user_id = Auth::User()->id;
-        $order->address_id = Auth::User()->Addresses()->default()->first()->id;
+        $order->address_id = Auth::User()->Addresses()->default()->id;
         $order->status_id = OrderStatus::where('name', '=', 'cart')->first()->id;
         $order->save();
         if($request->type=='recipe')

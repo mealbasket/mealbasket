@@ -13,7 +13,7 @@
         <th style="width:10%">Price</th>
         <th style="width:8%">Quantity</th>
         <th style="width:15%" class="text-center">Subtotal</th>
-        <th style="width:17%"><button class="btn btn-danger btn-sm" onclick="updateQuantity(0, 'cart', 0)"><i class="fa fa-trash-o"> Delete All</i></button>		</th>
+        <th class="text-center" style="width:17%"><button class="btn btn-danger btn-sm" onclick="updateQuantity(0, 'cart', 0)"><i class="fa fa-trash-o"> Delete All</i></button>		</th>
       </tr>
     </thead>
     <tbody>
@@ -33,7 +33,7 @@
           <input type="number" class="form-control text-center" value="{{$i->pivot->quantity}}" min="1" max="10" step="1" onchange="updateQuantity({{$i->id}}, 'ingredient', this.value)">
         </td>
         <td data-th="Subtotal" class="text-center">₹{{$i->pivot->price}}</td>
-        <td class="actions" data-th="">
+        <td class="actions text-center" data-th="">
             <!--<button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>-->
             <button class="btn btn-danger btn-sm" onclick="updateQuantity({{$i->id}}, 'ingredient', 0)"><i class="fa fa-trash-o"></i></button>								
         </td>
@@ -48,13 +48,13 @@
               <div class="col-sm-3 hidden-xs"><img class="cartOrderItemImg" src="{{$r->getImageUrl()}}" alt="{{$r->name}}" style="height: auto; width: 120px;"/></div>
               <div class="col-sm-9">
                 <h4 class="nomargin cartOrderItemText">{{$r->name}}</h4>
-                <p>
+                {{-- <p>
                 @foreach ($r->Ingredients as $ri)
                   @if($ri->pivot->value>0)
                     {{$ri->name}} {{$ri->pivot->scaledQuantity($r->pivot->servings)}} {{$ri->pivot->Unit->unit_short}}
                   @endif
                 @endforeach
-                </p>
+                </p> --}}
               </div>
             </div>
           </td>
@@ -63,7 +63,7 @@
             <input type="number" class="form-control text-center" value="{{$r->pivot->servings}}" min="1" max="10" step="1" onchange="updateQuantity({{$r->id}}, 'recipe', this.value)">
           </td>
           <td data-th="Subtotal" class="text-center">₹{{$r->pivot->price}}</td>
-          <td class="actions" data-th="">
+          <td class="actions text-center" data-th="">
               <!--<button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>-->
               <button class="btn btn-danger btn-sm" onclick="updateQuantity({{$r->id}}, 'recipe', 0)"><i class="fa fa-trash-o"></i></button>
           </td>
@@ -89,7 +89,7 @@
     
       <tr>
           <td><a href="/recipes" class="btn btn-warning">Continue Shopping</a></td>
-          <td colspan="3" class="hidden-xs"></td>
+          <td colspan="2" class="hidden-xs"></td>
           <td class="hidden-xs text-center"><strong>Total ₹{{$cart->total}}</strong></td>
           <td><a href="#" class="btn btn-success btn-block">Checkout</a></td>
         </tr>

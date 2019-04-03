@@ -50,3 +50,4 @@ Route::get('/cart', 'OrderController@cart');
 Route::post('/cart', 'OrderController@add');
 Route::put('/cart/address', 'OrderController@changeAddress');
 Route::put('/cart/quantity', 'OrderController@changeQuantity');
+Route::post('/payment', 'PaymentController@payment');

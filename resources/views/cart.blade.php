@@ -91,7 +91,24 @@
           <td><a href="/recipes" class="btn btn-warning">Continue Shopping</a></td>
           <td colspan="2" class="hidden-xs"></td>
           <td class="hidden-xs text-center"><strong>Total ₹{{$cart->total}}</strong></td>
-          <td><a href="#" class="btn btn-success btn-block">Checkout</a></td>
+          <td>
+            <div>
+            <form action="/payment" method="POST">
+            @csrf
+            <script src="https://checkout.razorpay.com/v1/checkout.js"
+              data-key="{{ env('razor_key') }}"
+              data-amount="{{$cart->total * 100}}"
+              data-buttontext="Checkout"
+              data-name="Mealbasket"
+              data-prefill.name="{{Auth::User()->name}}"
+              data-prefill.email="{{Auth::User()->email}}"
+              data-prefill.contact="{{Auth::User()->Addresses()->default()->first()->phone_number}}"
+              data-image="/logo_new.png"
+              data-theme.color="#ff7529">
+            </script>
+            </form>
+            </div>
+          </td>
         </tr>
       </tfoot>
     </table>

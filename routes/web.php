@@ -43,10 +43,14 @@ Route::put('/home/address', 'HomeController@primaryAddress');
 Route::get('/home/orders', 'HomeController@showOrders');
 Route::delete('/home/orders', 'HomeController@cancelOrder');
 
+Route::resource('/home/support', 'TicketController');
+Route::post('/home/support/{id}', 'TicketController@markSolved');
+
 Route::get('/admin', 'AdminController@index')->name('admin');
 Route::get('/admin/recipes', 'AdminController@recipe');
 Route::get('/admin/orders', 'AdminController@orders');
 Route::put('/admin/orders', 'AdminController@changeOrder');
+Route::get('/admin/support', 'TicketController@adminIndex');
 
 Route::get('/cart', 'OrderController@cart');
 Route::post('/cart', 'OrderController@add');

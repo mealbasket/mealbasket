@@ -27,7 +27,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('user.home');
+        $unread = Auth::User()->Tickets()->where('user_read', '=', 0)->count();
+        return view('user.home')->with('unread', $unread);
     }
 
     public function changepw(Request $request)

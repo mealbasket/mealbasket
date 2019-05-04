@@ -12,6 +12,10 @@
                     <a class="btn btn-primary" data-toggle="collapse" href="#changepassword" role="button">Change Password</a>
                     <a class="btn btn-primary" href="/home/address" role="button">My Addresses</a>
                     <a class="btn btn-primary" href="/home/orders" role="button">My Orders</a>
+                    <a class="btn btn-primary" href="/home/support" role="button">My Support tickets</a>
+                    @if($unread>0)
+                        <p>You have {{$unread}} unread support messages</p>
+                    @endif
                     <form action="/home/changepw" class="pt-4 collapse" id="changepassword" method="POST">
                         @csrf
                         {{ method_field('PUT') }}

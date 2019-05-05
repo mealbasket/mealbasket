@@ -7,6 +7,8 @@ use App\Recipe;
 use App\Order;
 use App\OrderStatus;
 use Auth;
+use Mail;
+use App\Mail\MailOrderStatus;
 
 class AdminController extends Controller
 {
@@ -67,6 +69,7 @@ class AdminController extends Controller
             $status_id = OrderStatus::where('name', '=', $request->change)->first()->id;
             $order->status_id = $status_id;
             $order->save();
+            Mail::to(Auth::User()->email)->send(new MailOrderStatus($order));
         }
         return redirect('/admin/orders')->with('status', 'Order updated');
     }

@@ -7,6 +7,8 @@ use Razorpay\Api\Api;
 use App\Order;
 use App\OrderStatus;
 use Auth;
+use Mail;
+use App\Mail\MailOrderStatus;
 
 class PaymentController extends Controller
 {
@@ -31,6 +33,7 @@ class PaymentController extends Controller
         $status_id = OrderStatus::where('name', '=', 'payment success')->first()->id;
         $cart->status_id = $status_id;
         $cart->save();
+        Mail::to(Auth::User()->email)->send(new MailOrderStatus($cart));
         return redirect('/home/orders')->with('status', 'Payment successful');
     }
 }

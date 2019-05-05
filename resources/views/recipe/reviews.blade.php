@@ -4,7 +4,7 @@
 @auth
 <form action="/recipe/review" method="POST">
   @csrf
-  <input type="text" name="message" placeholder="Enter your review">
+  <textarea type="text" name="message" cols="50" rows="2" placeholder="Enter your review"> </textarea>
   <input type="text" name="id" value={{$recipe->id}} hidden>
   <button type="submit" class="btn py-1 btn-primary">Submit</button>
 </form>

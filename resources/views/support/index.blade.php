@@ -18,7 +18,7 @@
             <div class="row mt-2">
                 <label for="message" class="col-md-4 col-form-label text-md-right">Message</label>
                 <div class="col-md-6">
-                    <input id="message" type="text" class="form-control" name="message" required>
+                    <textarea class="form-control" type="text" id="message" name="message" cols="50" rows="2" required></textarea>
                 </div>
             </div>
         </div>

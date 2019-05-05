@@ -65,17 +65,17 @@
       @endforeach
     </div>
   </div>
-<div class="row">
-  <div class="col-md-offset-1 col-md-10 col-md-offset-1 py-4">
-    <h2>Method</h2>
-    @foreach ($recipe->Steps as $step)
-    <h5>Step {{$step->id}}</h5>
-    <img class="recipeImage py-2" src={{$step->getImageUrl()}}>
-    <p>{{$step->text}}</p>
-    @endforeach
+  <div class="row">
+    <div class="col-md-offset-1 col-md-10 col-md-offset-1 py-4">
+      <h2>Method</h2>
+      @foreach ($recipe->Steps as $step)
+      <h5>Step {{$step->id}}</h5>
+      <img class="recipeImage py-2" src={{$step->getImageUrl()}}>
+      <p>{{$step->text}}</p>
+      @endforeach
+    </div>
   </div>
-</div>
-
+  @include('recipe.reviews')
 </div>
 @endsection
 

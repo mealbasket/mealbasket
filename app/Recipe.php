@@ -67,4 +67,9 @@ class Recipe extends Model
     {
         return $query->where('approved', '=', '1');
     }
+
+    public function Reviews()
+    {
+        return $this->hasMany('App\Review', 'recipe_id', 'id');
+    }
 }

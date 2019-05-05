@@ -46,6 +46,9 @@ Route::delete('/home/orders', 'HomeController@cancelOrder');
 Route::resource('/home/support', 'TicketController');
 Route::post('/home/support/{id}', 'TicketController@markSolved');
 
+Route::post('/recipe/review', 'ReviewController@addReview');
+Route::delete('/recipe/review', 'ReviewController@deleteReview');
+
 Route::get('/admin', 'AdminController@index')->name('admin');
 Route::get('/admin/recipes', 'AdminController@recipe');
 Route::get('/admin/orders', 'AdminController@orders');

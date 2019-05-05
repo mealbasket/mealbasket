@@ -12,6 +12,11 @@ class Ticket extends Model
         return $this->hasMany('App\TicketMessage', 'ticket_id', 'id');
     }
 
+    public function User()
+    {
+        return $this->belongsTo('App\User');
+    }
+
     public function getReadStatusAttribute()
     {
         if(Auth::User()->hasRole('admin')){

@@ -119,6 +119,17 @@
         </div>
       </div>
 
+      <div class="card">
+          <div class="card-header">
+            <a class="card-link" data-toggle="collapse" data-parent="#card-645473" href="#card-element-11"><b>Need more help?</b></a>
+          </div>
+          <div id="card-element-11" class="collapse">
+            <div class="card-body">
+              <a href="/home/support">Click here to create a Support Ticket</a>
+            </div>
+          </div>
+      </div>
+
     </div>
   </div>
 </div>

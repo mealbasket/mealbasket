@@ -52,4 +52,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Ticket', 'user_id', 'id');
     }
+
+    public function Activity()
+    {
+        return $this->belongsToMany('App\Recipe', 'user_activity')->using('App\UserActivity')->withPivot(['visits']);
+    }
 }

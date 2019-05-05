@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Recipe;
+use Auth;
 use Illuminate\Http\Request;
 
 class RecipeController extends Controller
@@ -58,6 +59,11 @@ class RecipeController extends Controller
      */
     public function show(Recipe $recipe)
     {
+        if(Auth::check())
+        {
+            Auth::User()->Activity()->syncWithoutDetaching([$recipe->id]);
+            Auth::User()->Activity()->find($recipe->id)->pivot->incrVisits();
+        }
         return view('recipe.show')->with('recipe', $recipe);
     }
 

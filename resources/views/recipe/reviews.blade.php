@@ -20,14 +20,16 @@
     <p class="mb-0" style="font-size: 0.85rem; font-weight: 300;">{{$review->created_at->diffForHumans()}}</p>
     <p class="mb-0">{{$review->message}}</p>
     <p>
-    @if(Auth::User()->hasRole('admin'))
-      <button class="btn btn-danger" onclick="event.preventDefault();document.getElementById('delete-review-form').submit();">Delete</button>
-      <form id="delete-review-form" action="/recipe/review" method="POST" style="display: none;">
-        @csrf
-        {{ method_field('DELETE') }}
-        <input type="text" name="id" value="{{$review->id}}" hidden>
-      </form>
-    @endif
+    @auth
+      @if(Auth::User()->hasRole('admin'))
+        <button class="btn btn-danger" onclick="event.preventDefault();document.getElementById('delete-review-form').submit();">Delete</button>
+        <form id="delete-review-form" action="/recipe/review" method="POST" style="display: none;">
+          @csrf
+          {{ method_field('DELETE') }}
+          <input type="text" name="id" value="{{$review->id}}" hidden>
+        </form>
+      @endif
+    @endauth
     </p>
   </div>
   @endforeach

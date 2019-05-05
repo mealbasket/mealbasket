@@ -152,3 +152,10 @@ footer {
 .razorpay-payment-button:not(:disabled):not(.disabled) {
   cursor: pointer;
 }
+
+.supportMessage {
+  border: black;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 5px;
+}

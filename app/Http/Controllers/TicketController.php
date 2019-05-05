@@ -24,7 +24,8 @@ class TicketController extends Controller
     public function adminIndex()
     {
         $tickets = Ticket::all()->sortByDesc('created_at');
-        return view('support.index')->with('tickets', $tickets);
+        $admin = 1;
+        return view('support.index')->with('tickets', $tickets)->with('admin', $admin);
     }
 
     public function create()

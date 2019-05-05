@@ -33,9 +33,9 @@
             <thead class="thead-dark">
                 <tr>
                     <th>Ticket ID</th>
-                    @auth @if(Auth::User()->hasRole('admin'))
+                    @isset($admin)
                     <th>User</th>
-                    @endif @endauth
+                    @endif
                     <th>Subject</th>
                     <th>Status</th>
                     <th>Creation Date</th>
@@ -46,9 +46,9 @@
                 @foreach ($tickets as $ticket) @if ($ticket->read_status==0)
                 <tr class="table-warning" style="font-weight: bold">
                     <td>{{$ticket->id}}</td>
-                    @auth @if(Auth::User()->hasRole('admin'))
+                    @isset($admin)
                     <td>{{$ticket->User->name}}</td>
-                    @endif @endauth
+                    @endif
                     <td>{{$ticket->subject}}</td>
                     <td>{{$ticket->status ? 'Solved': 'Pending - New Message'}}</td>
                     <td>{{$ticket->created_at->diffForHumans()}}</td>
@@ -59,9 +59,9 @@
                 @else
                 <tr>
                     <td>{{$ticket->id}}</td>
-                    @auth @if(Auth::User()->hasRole('admin'))
+                    @isset($admin)
                     <td>{{$ticket->User->name}}</td>
-                    @endif @endauth
+                    @endif
                     <td>{{$ticket->subject}}</td>
                     <td>{{$ticket->status ? 'Solved': 'Pending - No New Messages'}}</td>
                     <td>{{$ticket->created_at->diffForHumans()}}</td>

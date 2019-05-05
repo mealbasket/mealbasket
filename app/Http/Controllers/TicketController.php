@@ -28,11 +28,21 @@ class TicketController extends Controller
         return view('support.index')->with('tickets', $tickets)->with('admin', $admin);
     }
 
-    public function create()
+    public function store(Request $request)
     {
+        $this->validate($request, [
+            'title' => 'required|string',
+            'message' => 'required|string'
+        ]);
         $ticket = new Ticket;
+        $ticket->status = 0;
+        $ticket->title = $request->title;
         Auth::User()->Tickets()->save($ticket);
-        return view('support.show')->with('ticket', $ticket)->with('messages', []);
+        $message = new TicketMessage;
+        $message->message = $request->message;
+        $message->user_id = Auth::User()->id;
+        $ticket->Messages()->save($message);
+        return redirect('/home/support/'. $ticket->id)->with('success', 'Ticket Created');
     }
 
     public function show(int $id)

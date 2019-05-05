@@ -6,13 +6,13 @@
         <a class="btn mx-2 px-2 py-2 btn-primary" data-toggle="collapse" href="#newticket" role="button">New Ticket</a>
     </div>
     {{-- Please edit form below --}}
-    <form action="/home/support/create" class="pt-4 collapse" id="newticket" method="POST">
-        @csrf {{ method_field('PUT') }}
+    <form action="/home/support" class="pt-4 collapse" id="newticket" method="POST">
+        @csrf
         <div class="form-group">
             <div class="row">
-                <label for="message" class="col-md-4 col-form-label text-md-right">Subject</label>
+                <label for="title" class="col-md-4 col-form-label text-md-right">Title</label>
                 <div class="col-md-6">
-                    <input id="subject" type="text" class="form-control" name="subject" required>
+                    <input id="subject" type="text" class="form-control" name="title" required>
                 </div>
             </div>
             <div class="row mt-2">
@@ -36,7 +36,7 @@
                     @isset($admin)
                     <th>User</th>
                     @endif
-                    <th>Subject</th>
+                    <th>Title</th>
                     <th>Status</th>
                     <th>Creation Date</th>
                     <th></th>
@@ -49,7 +49,7 @@
                     @isset($admin)
                     <td>{{$ticket->User->name}}</td>
                     @endif
-                    <td>{{$ticket->subject}}</td>
+                    <td>{{$ticket->title}}</td>
                     <td>{{$ticket->status ? 'Solved': 'Pending - New Message'}}</td>
                     <td>{{$ticket->created_at->diffForHumans()}}</td>
                     <td>
@@ -62,7 +62,7 @@
                     @isset($admin)
                     <td>{{$ticket->User->name}}</td>
                     @endif
-                    <td>{{$ticket->subject}}</td>
+                    <td>{{$ticket->title}}</td>
                     <td>{{$ticket->status ? 'Solved': 'Pending - No New Messages'}}</td>
                     <td>{{$ticket->created_at->diffForHumans()}}</td>
                     <td>

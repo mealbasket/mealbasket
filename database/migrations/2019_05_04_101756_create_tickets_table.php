@@ -21,6 +21,7 @@ class CreateTicketsTable extends Migration
             $table->boolean('status')->default(0);
             $table->boolean('admin_read')->default(0);
             $table->boolean('user_read')->default(1);
+            $table->string('title');
         });
     }
 

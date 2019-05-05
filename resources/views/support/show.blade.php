@@ -1,7 +1,7 @@
 @extends('layouts.app') 
 @section('content')
 <div class="container">
-  <h4>Ticket Subject: {{$ticket->subject}} - {{$ticket->id}}</h4>
+  <h4>Ticket #{{$ticket->id}}: {{$ticket->title}}</h4>
   <h5>Status: {{$ticket->status ? 'Solved': 'Pending'}}</h4>
     <a class="btn btn-primary" data-toggle="collapse" href="#reply" role="button">Add Message/Reply</a>
     <form action="/home/support/{{$ticket->id}}" class="pt-4 collapse" id="reply" method="POST">

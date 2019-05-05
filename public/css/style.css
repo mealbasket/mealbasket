@@ -164,8 +164,10 @@ footer {
   width: auto;
 }
 
-.carousel-inner > .carousel-item > .carousel-caption {
+.swiper-slide > .carousel-caption {
   width: auto;
+  background: rgba(0,0,0,0.5);
+  border-radius: 20px;
 }
 
 .swiper-container {

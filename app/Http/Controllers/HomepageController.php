@@ -13,7 +13,8 @@ class HomepageController extends Controller
         //$suggest = ;
         $random = Recipe::all()->random(10);
         $recent = Recipe::all()->sortByDesc('created_at')->take(10);
-        $activity = Auth::User()->Activity->take(10);
-        return view('index')->with('random', $random)->with('recent', $recent)->with('activity', $activity);
+        // $activity = Auth::User()->Activity->take(10);
+        // return view('index')->with('random', $random)->with('recent', $recent)->with('activity', $activity);
+        return view('index')->with('random', $random)->with('recent', $recent);
     }
 }

@@ -1,21 +1,27 @@
-<h3>Reviews</h3>
+<div class="row" style="display: block;">
+<h3 class="mt-4" id="reviews">Reviews</h3>
 
 @auth
 <form action="/recipe/review" method="POST">
   @csrf
   <input type="text" name="message" placeholder="Enter your review">
   <input type="text" name="id" value={{$recipe->id}} hidden>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn py-1 btn-primary">Submit</button>
 </form>
 @endauth
+</div>
 
 @if(count($recipe->Reviews)>0)
   @foreach ($recipe->Reviews as $review)
-    <p>{{$review->message}}
-    {{$review->User->name}}
-    {{$review->created_at->diffForHumans()}}
+  <div class="row mt-3 mb-4" style="display: block;">
+    <span><img border="0" src="{{ asset('/img/user.png') }}" width="40" height="40">
+    <p class="mb-0" style="font-weight: bold;">{{$review->User->name}}</p>
+    </span>
+    <p class="mb-0" style="font-size: 0.85rem; font-weight: 300;">{{$review->created_at->diffForHumans()}}</p>
+    <p class="mb-0">{{$review->message}}</p>
+    <p>
     @if(Auth::User()->hasRole('admin'))
-      <button onclick="event.preventDefault();document.getElementById('delete-review-form').submit();">Delete</button>
+      <button class="btn btn-danger" onclick="event.preventDefault();document.getElementById('delete-review-form').submit();">Delete</button>
       <form id="delete-review-form" action="/recipe/review" method="POST" style="display: none;">
         @csrf
         {{ method_field('DELETE') }}
@@ -23,7 +29,9 @@
       </form>
     @endif
     </p>
+  </div>
   @endforeach
 @else
   <p>No reviews yet!</p>
 @endif
+

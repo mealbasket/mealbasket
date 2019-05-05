@@ -36,6 +36,7 @@
           @endif
         @endforeach
       </p>
+      <h5><a id="readReviews" href="#reviews">Read Reviews</a></h5>
     </div>
   </div>
 
@@ -65,7 +66,7 @@
       @endforeach
     </div>
   </div>
-  <div class="row">
+  <div class="row" style="border-bottom-color: black;padding-top: 15px;border-bottom-width: unset;border-bottom-style: double;">
     <div class="col-md-offset-1 col-md-10 col-md-offset-1 py-4">
       <h2>Method</h2>
       @foreach ($recipe->Steps as $step)
@@ -101,4 +102,17 @@
         }
       }
     </script>
+<script>
+  $(document).ready(function(){
+    $('#readReviews').on('click', function(e) {
+      e.preventDefault()
+      $('html, body').animate(
+        {
+          scrollTop: $('#reviews').offset().top,
+        },
+        800
+        )
+      });
+    });
+</script>
 @endsection

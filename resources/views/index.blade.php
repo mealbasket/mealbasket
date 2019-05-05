@@ -8,6 +8,11 @@
 <h4>
   Some of our latest recipes...
 </h4>
+<!--TODO: Same for $recent, $random, $activity-->
+@foreach ($activity as $a)
+    {{$a->name}}
+    {{$a->getImageUrl()}}
+@endforeach
 <div class="row pt-2">
   <div class="col-md-12">
     <div class="row">

@@ -17,9 +17,7 @@ Auth::routes();
     return view('welcome');
 }); */
 
-Route::get('/', function () {
-    return view('index');
-})->name('index');
+Route::get('/', 'HomepageController@index')->name('index');
 
 Route::get('/support', function () {
     return view('static_pages.support');

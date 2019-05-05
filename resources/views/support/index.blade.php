@@ -28,41 +28,50 @@
             </div>
         </div>
     </form>
-<div class="row mt-4">
-    <table class="table table-bordered text-center">
-        <thead class="thead-dark">
-            <tr>
-                <th>Ticket ID</th>
-                <th>Subject</th>
-                <th>Status</th>
-                <th>Creation Date</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($tickets as $ticket) @if ($ticket->read_status==0)
-            <tr class="table-warning" style="font-weight: bold">
-                <td>{{$ticket->id}}</td>
-                <td>{{$ticket->subject}}</td>
-                <td>{{$ticket->status ? 'Solved': 'Pending - New Message'}}</td>
-                <td>{{$ticket->created_at->diffForHumans()}}</td>
-                <td>
-                    <a class="btn btn-primary" href="/home/support/{{$ticket->id}}" role="button">View</a>
-                </td>
-            </tr>
-            @else
-            <tr>
-                <td>{{$ticket->id}}</td>
-                <td>{{$ticket->subject}}</td>
-                <td>{{$ticket->status ? 'Solved': 'Pending - No New Messages'}}</td>
-                <td>{{$ticket->created_at->diffForHumans()}}</td>
-                <td>
-                    <a class="btn btn-primary" href="/home/support/{{$ticket->id}}" role="button">View</a>
-                </td>
-            </tr>
-            @endif @endforeach
-        </tbody>
-    </table>
-</div>
+    <div class="row mt-4">
+        <table class="table table-bordered text-center">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Ticket ID</th>
+                    @auth @if(Auth::User()->hasRole('admin'))
+                    <th>User</th>
+                    @endif @endauth
+                    <th>Subject</th>
+                    <th>Status</th>
+                    <th>Creation Date</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($tickets as $ticket) @if ($ticket->read_status==0)
+                <tr class="table-warning" style="font-weight: bold">
+                    <td>{{$ticket->id}}</td>
+                    @auth @if(Auth::User()->hasRole('admin'))
+                    <td>{{$ticket->User->name}}</td>
+                    @endif @endauth
+                    <td>{{$ticket->subject}}</td>
+                    <td>{{$ticket->status ? 'Solved': 'Pending - New Message'}}</td>
+                    <td>{{$ticket->created_at->diffForHumans()}}</td>
+                    <td>
+                        <a class="btn btn-primary" href="/home/support/{{$ticket->id}}" role="button">View</a>
+                    </td>
+                </tr>
+                @else
+                <tr>
+                    <td>{{$ticket->id}}</td>
+                    @auth @if(Auth::User()->hasRole('admin'))
+                    <td>{{$ticket->User->name}}</td>
+                    @endif @endauth
+                    <td>{{$ticket->subject}}</td>
+                    <td>{{$ticket->status ? 'Solved': 'Pending - No New Messages'}}</td>
+                    <td>{{$ticket->created_at->diffForHumans()}}</td>
+                    <td>
+                        <a class="btn btn-primary" href="/home/support/{{$ticket->id}}" role="button">View</a>
+                    </td>
+                </tr>
+                @endif @endforeach
+            </tbody>
+        </table>
+    </div>
 </div>
 @endsection

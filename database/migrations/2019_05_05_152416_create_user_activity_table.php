@@ -16,9 +16,9 @@ class CreateUserActivityTable extends Migration
         Schema::create('user_activity', function (Blueprint $table) {
             $table->timestamps();
             $table->unsignedInteger('recipe_id');
-            $table->foreign('recipe_id')->references('id')->on('recipes');
+            $table->foreign('recipe_id')->references('id')->on('recipes')->onDelete('cascade');
             $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('visits')->default(0);
         });
     }

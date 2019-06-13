@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Ingredient;
+use App\Units;
 use Illuminate\Http\Request;
 
 class IngredientController extends Controller
@@ -58,7 +59,7 @@ class IngredientController extends Controller
      */
     public function edit(Ingredient $ingredient)
     {
-        //
+        return view('ingredient.edit')->with('ingredient', $ingredient);
     }
 
     /**
@@ -70,7 +71,21 @@ class IngredientController extends Controller
      */
     public function update(Request $request, Ingredient $ingredient)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string',
+            'price' => 'required|numeric|min:0',
+            'unit' => 'required|string',
+            'photo' => 'image'
+        ]);
+        $data = $request->only($ingredient->getFillable());
+        $ingredient->fill($data);
+        if ($request->hasFile('photo')) {
+            Storage::disk('s3')->delete($ingredient->image_path);
+            $ingredient->image_path = $request->photo->store('ingredient_images', 's3');
+        }
+        $ingredient->unit_id = Units::firstOrCreate(['unit_short'=> $request->unit])->id;
+        $ingredient->save();
+        return redirect('/admin/ingredients')->with('success', 'Ingredient updated');
     }
 
     /**

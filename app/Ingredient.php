@@ -7,6 +7,8 @@ use Storage;
 
 class Ingredient extends Model
 {
+    protected $fillable = ['name', 'price'];
+
     public function getImageUrl()
     {
         return Storage::disk('s3')->temporaryUrl($this->image_path, now()->addMinutes(5));

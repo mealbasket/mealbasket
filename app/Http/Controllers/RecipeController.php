@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Recipe;
 use Auth;
+use Storage;
 use Illuminate\Http\Request;
 
 class RecipeController extends Controller
@@ -75,7 +76,7 @@ class RecipeController extends Controller
      */
     public function edit(Recipe $recipe)
     {
-        //
+        return view('recipe.edit')->with('recipe', $recipe);
     }
 
     /**
@@ -87,11 +88,29 @@ class RecipeController extends Controller
      */
     public function update(Request $request, Recipe $recipe)
     {
-        $this->validate($request, [
-            'approved' => 'in:0,1'
-        ]);
+        if($request->has('approved'))
+        {
+            $this->validate($request, [
+                'approved' => 'in:0,1'
+            ]);            
+        }
+        else
+        {
+            $this->validate($request, [
+                'name' => 'string',
+                'rating' => 'numeric|min:0|nullable',
+                'description' => 'string',
+                'prep_time' => 'integer|min:1',
+                'photo' => 'image'
+            ]);
+        }
         $data = $request->only($recipe->getFillable());
-        $recipe->fill($data)->save();
+        $recipe->fill($data);
+        if ($request->hasFile('photo')) {
+            Storage::disk('s3')->delete($recipe->image_path);
+            $recipe->image_path = $request->photo->store('recipe_images', 's3');
+        }
+        $recipe->save();
         return redirect('/admin/recipes')->with('success', 'Recipe updated');
     }
 

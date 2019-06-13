@@ -12,7 +12,7 @@
           <a class="mt-auto btn-block btn btn-warning" style="margin-bottom: 0.25rem!important;" href="#" role="button" onclick="approveRecipe('{{$recipe->id}}', 0)">Disapprove</a>          @else
           <a class="mt-auto btn-block btn btn-success" style="margin-bottom: 0.25rem!important;" href="#" role="button" onclick="approveRecipe('{{$recipe->id}}', 1)">Approve</a>          @endif
           <a class="btnAdmin btn-block btn btn-success" target="_blank" href="{{ url( 'recipes/' . $recipe->id ) }}" role="button">View</a>
-          <a class="btnAdmin btn-block btn btn-info" href="#" role="button">Edit</a>
+          <a class="btnAdmin btn-block btn btn-info" href="{{url('recipes/'.$recipe->id.'/edit')}}" role="button">Edit</a>
           <a class="btnAdmin btn-block btn btn-danger" href="#" onclick="deleteRecipe('{{$recipe->id}}')" role="button">Delete</a>
         </div>
       </div>
@@ -39,7 +39,7 @@
       document.getElementById('approval-value').value = approve;
       document.getElementById('approval-form').submit();
     }
-    function deleteRecipe(id, approve) {
+    function deleteRecipe(id) {
       document.getElementById('delete-form').action = '{{url('recipes/')}}/' + id;
       document.getElementById('delete-form').submit();
     }

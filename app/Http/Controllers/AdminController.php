@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Recipe;
+use App\Ingredient;
 use App\Order;
 use App\OrderStatus;
 use Auth;
@@ -42,6 +43,17 @@ class AdminController extends Controller
     {
         $recipes = Recipe::select('id', 'name', 'approved')->paginate(30);
         return view('admin.recipe.index')->with('recipes', $recipes);
+    }
+
+    /**
+     * Show the ingredient index.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function ingredient()
+    {
+        $ingredients = Ingredient::select('id', 'name', 'price')->paginate(30);
+        return view('admin.ingredient.index')->with('ingredients', $ingredients);
     }
 
     public function orders(Request $request)

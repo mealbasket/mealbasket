@@ -81,6 +81,7 @@ class IngredientController extends Controller
      */
     public function destroy(Ingredient $ingredient)
     {
-        //
+        $ingredient->delete();
+        return redirect('/admin/ingredients')->with('success', 'Ingredient deleted');
     }
 }

@@ -49,8 +49,8 @@ Route::delete('/recipe/review', 'ReviewController@deleteReview');
 
 Route::get('/admin', 'AdminController@index')->name('admin');
 Route::get('/admin/recipes', 'AdminController@recipe');
+Route::get('/admin/ingredients', 'AdminController@ingredient');
 Route::get('/admin/orders', 'AdminController@orders');
-Route::get('/admin/ingredients', 'AdminController@ingredients');
 Route::put('/admin/orders', 'AdminController@changeOrder');
 Route::get('/admin/support', 'TicketController@adminIndex');
 

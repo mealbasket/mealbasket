@@ -18,7 +18,7 @@ class CreateRecipeIngredientTable extends Migration
             $table->unsignedInteger('recipe_id');
             $table->foreign('recipe_id')->references('id')->on('recipes')->onDelete('cascade');
             $table->unsignedInteger('ingredient_id');
-            $table->foreign('ingredient_id')->references('id')->on('ingredients');
+            $table->foreign('ingredient_id')->references('id')->on('ingredients')->onDelete('cascade');
             $table->unsignedInteger('unit_id')->nullable();
             $table->foreign('unit_id')->references('id')->on('units');
             $table->integer('value')->nullable();

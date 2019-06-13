@@ -1,6 +1,7 @@
 @extends('layouts.app') 
 @section('content')
 <div>
+  <h2>Recipe Management</h2>
   @if(count($recipes)>0)
   <div class="row">
     @foreach($recipes as $recipe)
@@ -26,6 +27,7 @@
   <form id="delete-form" method="POST" style="display: none;">
     @method('DELETE') @csrf
   </form>
+  {{$recipes->links("pagination::bootstrap-4")}}
   @else
   <p>No Recipes found</p>
   @endif

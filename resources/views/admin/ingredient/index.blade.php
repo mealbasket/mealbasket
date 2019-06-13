@@ -1,8 +1,12 @@
 @extends('layouts.app') 
 @section('content')
 <div>
+  <h2>Ingredient Management</h2>
+  <a class="btn btn-success" href="{{url('ingredients/create')}}">Add</a>
   @if(count($ingredients)>0)
-  <p>Warning deleting a ingredient will also delete it from any associated recipes</p>
+  <div class="alert alert-primary" role="alert">
+    Deleting an ingredient will also delete it from any associated recipes
+  </div>
   <div class="row">
     @foreach($ingredients as $ing)
     <div class="col-6 col-md-2 py-2">
@@ -17,6 +21,7 @@
     </div>
     @endforeach
   </div>
+  {{$ingredients->links("pagination::bootstrap-4")}}
   <form id="delete-form" method="POST" style="display: none;">
       @method('DELETE') @csrf
   </form>

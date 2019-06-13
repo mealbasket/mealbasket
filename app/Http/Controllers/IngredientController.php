@@ -26,7 +26,7 @@ class IngredientController extends Controller
      */
     public function create()
     {
-        //
+        return view('ingredient.create');
     }
 
     /**
@@ -37,7 +37,22 @@ class IngredientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string',
+            'price' => 'required|numeric|min:0',
+            'unit' => 'required|string',
+            'photo' => 'required|image'
+        ]);
+        $ingredient = new Ingredient;
+        $data = $request->only($ingredient->getFillable());
+        $ingredient->fill($data);
+        if ($request->hasFile('photo')) {
+            $ingredient->image_path = $request->photo->store('ingredient_images', 's3');
+        }
+        $ingredient->unit_id = Units::firstOrCreate(['unit_short'=> $request->unit])->id;
+        $ingredient->base_quantity = 1;
+        $ingredient->save();
+        return redirect('/admin/ingredients')->with('success', 'Ingredient created');
     }
 
     /**

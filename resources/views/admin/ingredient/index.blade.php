@@ -1,10 +1,10 @@
-@extends('layouts.app') 
+@extends('layouts.app')
 @section('content')
 <div>
   <h2>Ingredient Management</h2>
-  <a class="btn btn-success" href="{{url('ingredients/create')}}">Add</a>
+  <a class="btn btn-success" href="{{url('ingredients/create')}}">Add New Ingredient</a>
   @if(count($ingredients)>0)
-  <div class="alert alert-primary" role="alert">
+  <div class="alert alert-primary my-2" role="alert">
     Deleting an ingredient will also delete it from any associated recipes
   </div>
   <div class="row">

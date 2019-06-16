@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-
 <div class="row">
   <div class="col-md-6 offset-md-3 text-center">
     <h5 class="my-3">Update Ingredient</h5>
@@ -27,8 +26,10 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="photo">Choose image</label>
-          <img src="{{ $ingredient->getImageUrl() }}" style="height: 150px; width: auto;">
+          <label for="photo">Choose Image</label>
+          <div class="offset-md-3 col-md-6">
+            <img src="{{ $ingredient->getImageUrl() }}" style="height: 150px; width: auto;">
+          </div>
           <div class="offset-md-3 col-md-6">
             <input class="form-control" type="file" name="photo"/>
           </div>
@@ -38,7 +39,4 @@
     </div>
   </div>
 </div>
-
-
-
 @endsection

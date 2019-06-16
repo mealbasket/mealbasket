@@ -25,7 +25,7 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="photo">Choose image</label>
+          <label for="photo">Choose Image</label>
           <div class="offset-md-3 col-md-6">
             <input class="form-control" type="file" name="photo"/>
           </div>

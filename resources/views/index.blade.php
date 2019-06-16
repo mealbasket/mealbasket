@@ -1,12 +1,11 @@
-@extends('layouts.app') 
+@extends('layouts.app')
 @section('content')
-<div class="container-fluid">
 
 
   <!--TODO: Same for $recent, $random, $activity-->
 
 
-  
+<div class="container-fluid full-width">
   <div class="row mt-5">
     <div class="col-md-12">
       <div class="swiper-container swiper-recent">
@@ -34,8 +33,8 @@
         <img class="img-fluid d-block" style="position:inherit; z-index: 999; width: inherit;" src="{{asset('/img/howItWorks.png')}}" />
       </div>
     </div>
-<h4 style="z-index: 999; position: relative; padding-top: 40px">Choose from our large selection...</h4>
-    <div class="row" style="margin-top: -200px">
+<!-- <h5 style="z-index: 999; position: relative; padding-top: 40px">Choose from our large selection...</h5> -->
+    <div class="row" style="margin-top: 0px">
         <div class="col-md-12">
           <div class="swiper-container swiper-random">
             <div class="swiper-wrapper">
@@ -57,8 +56,8 @@
         </div>
       </div>
 
-
 </div>
+@endsection
 
 @section('pagespecificscripts')
 <script>
@@ -70,38 +69,81 @@ $(".swiper-slide").click(function(){
 
 });
 
-  var swiper = new Swiper('.swiper-recent', {
-      slidesPerView: 3,
-      spaceBetween: 30,
-      preloadImages: false,
-      loop: true,
-      lazy: true,
-      watchSlidesVisibility: true,
-      navigation: {
-      nextEl: '.swiper-button-next-recent',
-      prevEl: '.swiper-button-prev-recent',
-      },
-      pagination: {
-        el: '.swiper-pagination-recent',
-        clickable: true,
-      },
-    });
+  if (window.matchMedia("(max-width: 600px)").matches) {
 
-    var swiper = new Swiper('.swiper-random', {
-      slidesPerView: 5,
-      spaceBetween: 30,
-      preloadImages: false,
-      loop: true,
-      lazy: true,
-      watchSlidesVisibility: true,
-      navigation: {
-      nextEl: '.swiper-button-next-random',
-      prevEl: '.swiper-button-prev-random',
-      },
-      pagination: {
-        el: '.swiper-pagination-random',
-        clickable: true,
-      },
-    });
+    $('.swiper-pagination').toggle();
+    $('.swiper-button-prev').toggle();
+    $('.swiper-button-next').toggle();
+
+    var swiper = new Swiper('.swiper-recent', {
+        slidesPerView: 2,
+        spaceBetween: 10,
+        preloadImages: false,
+        loop: true,
+        lazy: true,
+        watchSlidesVisibility: true,
+        navigation: {
+        nextEl: '.swiper-button-next-recent',
+        prevEl: '.swiper-button-prev-recent',
+        },
+        pagination: {
+          el: '.swiper-pagination-recent',
+          clickable: true,
+        },
+      });
+
+      var swiper = new Swiper('.swiper-random', {
+        slidesPerView: 3,
+        spaceBetween: 10,
+        preloadImages: false,
+        loop: true,
+        lazy: true,
+        watchSlidesVisibility: true,
+        navigation: {
+        nextEl: '.swiper-button-next-random',
+        prevEl: '.swiper-button-prev-random',
+        },
+        pagination: {
+          el: '.swiper-pagination-random',
+          clickable: true,
+        },
+      });
+  } else {
+    var swiper = new Swiper('.swiper-recent', {
+        slidesPerView: 3,
+        spaceBetween: 30,
+        preloadImages: false,
+        loop: true,
+        lazy: true,
+        watchSlidesVisibility: true,
+        navigation: {
+        nextEl: '.swiper-button-next-recent',
+        prevEl: '.swiper-button-prev-recent',
+        },
+        pagination: {
+          el: '.swiper-pagination-recent',
+          clickable: true,
+        },
+      });
+
+      var swiper = new Swiper('.swiper-random', {
+        slidesPerView: 5,
+        spaceBetween: 30,
+        preloadImages: false,
+        loop: true,
+        lazy: true,
+        watchSlidesVisibility: true,
+        navigation: {
+        nextEl: '.swiper-button-next-random',
+        prevEl: '.swiper-button-prev-random',
+        },
+        pagination: {
+          el: '.swiper-pagination-random',
+          clickable: true,
+        },
+      });
+  }
+
+
 </script>
 @endsection

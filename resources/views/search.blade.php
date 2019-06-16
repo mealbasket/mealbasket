@@ -1,4 +1,4 @@
-@extends('layouts.app') 
+@extends('layouts.app')
 @section('content')
 <div class="row pt-4 justify-content-center">
   <div class="col-md-6">
@@ -10,7 +10,7 @@
           <input type="text" class="form-control" name="query" placeholder="Enter search query">
         </div>
       </div>
-    
+
   </div>
   <div class="col-md-4">
     <div class="row justify-content-center" style="padding-top: 40px;">

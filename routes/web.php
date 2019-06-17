@@ -35,6 +35,7 @@ Route::resource('recipes', 'RecipeController');
 
 Route::put('/recipes/{recipe}/nutrition', 'RecipeController@updateNutrition');
 Route::put('/recipes/{recipe}/steps', 'RecipeController@updateSteps');
+Route::put('/recipes/{recipe}/ingredients', 'RecipeController@updateIngredients');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::put('/home/changepw', 'HomeController@changepw');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Recipe;
 use App\Nutrition;
 use App\Units;
+use App\Ingredient;
 use Auth;
 use Storage;
 use Illuminate\Http\Request;
@@ -80,7 +81,8 @@ class RecipeController extends Controller
     {
         $nutrition = Nutrition::select('name')->get();
         $units = Units::select('unit_short')->get();
-        return view('recipe.edit')->with('recipe', $recipe)->with('nutrition', $nutrition)->with('units', $units);
+        $ingredients = Ingredient::select('id', 'name')->get();
+        return view('recipe.edit')->with('recipe', $recipe)->with('nutrition', $nutrition)->with('units', $units)->with('ingredients', $ingredients);
     }
 
     /**
@@ -163,6 +165,32 @@ class RecipeController extends Controller
             $step->save();
         }
         return back()->with('success', 'Recipe Steps updated');
+    }
+
+    public function updateIngredients(Request $request, Recipe $recipe)
+    {
+        $this->validate($request, [
+            'ri' => 'required|array',
+            'ri.*.id' => 'required|integer|exists:ingredients,id',
+            'ri.*.unit' => 'nullable|string',
+            'ri.*.value' => 'nullable|integer',
+        ]);
+        $data = array();
+        foreach($request->ri as $ri)
+        {
+            $ingId = $ri['id'];
+            if($ri['value']!=null)
+            {    
+                $unitId = Units::firstOrCreate(['unit_short' => $ri['unit']])->id;
+            }
+            else {
+                $ri['value'] = 0;
+                $unitId = 14; //undefined unit for 'to taste' value
+            }
+            $data[$ingId] = ['unit_id' => $unitId, 'value' => $ri['value']];
+        }
+        $recipe->Ingredients()->sync($data);
+        return back()->with('success', 'Recipe Ingredients updated');
     }
 
     /**

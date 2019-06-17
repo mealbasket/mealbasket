@@ -44,8 +44,8 @@
       </form>
       @include('recipe.edit_nutrition')
       @include('recipe.edit_steps')
+      @include('recipe.edit_ingredients')
     </div>
-    <button class="btn btn-primary">Edit Ingredients</button>
   </div>
 </div>
 

@@ -43,9 +43,9 @@
         <button type="submit" class="btn btn-primary">Update</button>
       </form>
       @include('recipe.edit_nutrition')
+      @include('recipe.edit_steps')
     </div>
     <button class="btn btn-primary">Edit Ingredients</button>
-    <button class="btn btn-primary">Edit Steps</button>
   </div>
 </div>
 

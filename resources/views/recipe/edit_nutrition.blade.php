@@ -1,4 +1,4 @@
-<form class="justify-content-center" action="{{url('/recipes/'.$recipe->id.'/nutrition')}}" method="POST" enctype="multipart/form-data">
+<form class="justify-content-center" action="{{url('/recipes/'.$recipe->id.'/nutrition')}}" method="POST">
   @method('PUT')
   @csrf
   <div class="form-group">
@@ -21,5 +21,5 @@
       @endforeach
     </datalist>
   </div>
-  <button type="submit" class="btn btn-primary">Update</button>
+  <button type="submit" class="btn btn-primary">Update Nutrition</button>
 </form>

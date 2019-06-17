@@ -137,6 +137,34 @@ class RecipeController extends Controller
         return back()->with('success', 'Recipe Nutrition updated');
     }
 
+    public function updateSteps(Request $request, Recipe $recipe)
+    {
+        $this->validate($request, [
+            'rs' => 'required|array',
+            'rs.*.id' => 'required|integer|min:1|distinct',
+            'rs.*.text' => 'required|string',
+            'rs.*.photo' => 'image',
+        ]);
+        $data = array();
+        foreach($request->rs as $rs)
+        {
+            $step = $recipe->Steps()->firstOrNew(['id' => $rs['id']]);
+            $step->text =  $rs['text'];
+            if(array_key_exists('photo', $rs))
+            {
+                if($step->image_path)
+                {
+                    Storage::disk('s3')->delete($step->image_path);
+                }
+                $step->image_path = $rs['photo']->store('recipe_images', 's3');
+            }
+            if(!$step->image_path)
+                return back()->with('error', 'All steps need images');
+            $step->save();
+        }
+        return back()->with('success', 'Recipe Steps updated');
+    }
+
     /**
      * Remove the specified resource from storage.
      *

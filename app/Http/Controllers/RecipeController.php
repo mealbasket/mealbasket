@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Recipe;
+use App\Nutrition;
+use App\Units;
 use Auth;
 use Storage;
 use Illuminate\Http\Request;
@@ -76,7 +78,9 @@ class RecipeController extends Controller
      */
     public function edit(Recipe $recipe)
     {
-        return view('recipe.edit')->with('recipe', $recipe);
+        $nutrition = Nutrition::select('name')->get();
+        $units = Units::select('unit_short')->get();
+        return view('recipe.edit')->with('recipe', $recipe)->with('nutrition', $nutrition)->with('units', $units);
     }
 
     /**
@@ -112,6 +116,25 @@ class RecipeController extends Controller
         }
         $recipe->save();
         return redirect('/admin/recipes')->with('success', 'Recipe updated');
+    }
+
+    public function updateNutrition(Request $request, Recipe $recipe)
+    {
+        $this->validate($request, [
+            'rn' => 'required|array',
+            'rn.*.name' => 'required|string',
+            'rn.*.unit' => 'required|string',
+            'rn.*.amount' => 'required|integer|min:1',
+        ]);
+        $data = array();
+        foreach($request->rn as $rn)
+        {
+            $nutrId = Nutrition::firstOrCreate(['name' => $rn['name']])->id;
+            $unitId = Units::firstOrCreate(['unit_short' => $rn['unit']])->id;
+            $data[$nutrId] = ['unit_id' => $unitId, 'value' => $rn['amount']];
+        }
+        $recipe->Nutrition()->sync($data);
+        return back()->with('success', 'Recipe Nutrition updated');
     }
 
     /**

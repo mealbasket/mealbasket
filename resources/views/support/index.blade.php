@@ -1,11 +1,10 @@
-@extends('layouts.app') 
+@extends('layouts.app')
 @section('content')
 <div class="container">
     <div class="row">
         <h2>My Support Tickets</h2>
         <a class="btn mx-2 px-2 py-2 btn-primary" data-toggle="collapse" href="#newticket" role="button">New Ticket</a>
     </div>
-    {{-- Please edit form below --}}
     <form action="/home/support" class="pt-4 collapse" id="newticket" method="POST">
         @csrf
         <div class="form-group">

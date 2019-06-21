@@ -42,13 +42,43 @@
         </div>
         <button type="submit" class="btn btn-primary">Update</button>
       </form>
-      @include('recipe.edit_nutrition')
-      @include('recipe.edit_steps')
-      @include('recipe.edit_ingredients')
+      <a class="btn mx-2 my-3 px-2 py-2 btn-primary" data-toggle="collapse" id="editNutrition" href="" role="button">Edit Nutrition</a>
+      <a class="btn mx-2 my-3 px-2 py-2 btn-primary" data-toggle="collapse" id="editSteps" href="" role="button">Edit Steps</a>
+      <a class="btn mx-2 my-3 px-2 py-2 btn-primary" data-toggle="collapse" id="editIngredients" href="" role="button">Edit Ingredients</a>
+      <div class="pt-2 collapse" id="editNutritionSection">
+        @include('recipe.edit_nutrition')
+      </div>
+      <div class="pt-2 collapse" id="editStepsSection">
+        @include('recipe.edit_steps')
+      </div>
+      <div class="pt-2 collapse" id="editIngredientsSection">
+        @include('recipe.edit_ingredients')
+      </div>
     </div>
   </div>
 </div>
 
+@endsection
 
+@section('pagespecificscripts')
+<script>
+  $('#editNutrition').click(function(){
+    $('#editNutritionSection').collapse('toggle');
+    $('#editStepsSection').collapse('hide');
+    $('#editIngredientsSection').collapse('hide');
+  });
 
+  $('#editSteps').click(function(){
+    $('#editStepsSection').collapse('toggle');
+    $('#editNutritionSection').collapse('hide');
+    $('#editIngredientsSection').collapse('hide');
+  });
+
+  $('#editIngredients').click(function(){
+    $('#editIngredientsSection').collapse('toggle');
+    $('#editStepsSection').collapse('hide');
+    $('#editNutritionSection').collapse('hide');
+  });
+
+</script>
 @endsection

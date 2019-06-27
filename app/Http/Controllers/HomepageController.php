@@ -10,8 +10,8 @@ class HomepageController extends Controller
 {
     public function index()
     {
-        $random = Recipe::all()->random(10);
-        $recent = Recipe::all()->sortByDesc('created_at')->take(10);
+        $random = Recipe::approved()->get()->random(10);
+        $recent = Recipe::approved()->get()->sortByDesc('created_at')->take(10);
         $activity = null;
         if(Auth::check())
         {

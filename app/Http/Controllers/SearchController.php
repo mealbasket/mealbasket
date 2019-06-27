@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Recipe;
+use App\Tag;
 use App\Ingredient;
 
 class SearchController extends Controller
@@ -33,7 +34,20 @@ class SearchController extends Controller
         $query = $request->input('query');
         $type = $request->input('type');
         if ($type=="recipe") {
-            $result = Recipe::where('name', 'like', '%'.$query.'%')->approved()->paginate(10);
+            $tag = Tag::where('name', $query)->first();
+            if($tag != null)
+            {
+                $tagId = $tag->id;
+                $result = Recipe::where('name', 'like', '%'.$query.'%')
+                            ->orWhereHas('tags', function ($q) use($tagId) {
+                                $q->where('tag_id', $tagId);
+                                }
+                            )->approved()->paginate(10);
+            }
+            else {
+                $result = Recipe::where('name', 'like', '%'.$query.'%')->approved()->paginate(10);
+            }
+
             return view('recipe.index')->with('recipes', $result);
         }
         if ($type=="ingredient") {

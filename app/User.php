@@ -55,6 +55,6 @@ class User extends Authenticatable
 
     public function Activity()
     {
-        return $this->belongsToMany('App\Recipe', 'user_activity')->using('App\UserActivity')->withPivot(['visits']);
+        return $this->belongsToMany('App\Recipe', 'user_activity')->using('App\UserActivity')->withPivot(['visits', 'created_at', 'updated_at'])->withTimestamps();
     }
 }

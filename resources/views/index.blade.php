@@ -8,6 +8,7 @@
 <div class="container-fluid full-width">
   <div class="row mt-5">
     <div class="col-md-12">
+      <h3>Recently added recipes</h3>
       <div class="swiper-container swiper-recent">
         <div class="swiper-wrapper">
             @foreach ($recent as $r)
@@ -36,6 +37,7 @@
 <!-- <h5 style="z-index: 999; position: relative; padding-top: 40px">Choose from our large selection...</h5> -->
     <div class="row" style="margin-top: 0px">
         <div class="col-md-12">
+          <h3>Random recipes</h3>
           <div class="swiper-container swiper-random">
             <div class="swiper-wrapper">
                 @foreach ($random as $r)
@@ -55,6 +57,30 @@
           </div>
         </div>
       </div>
+      @isset($activity)
+      <div class="row mt-5">
+        <div class="col-md-12">
+          <h3>Recently viewed recipes</h3>
+          <div class="swiper-container swiper-recent">
+            <div class="swiper-wrapper">
+                @foreach ($activity as $a)
+                <div class="swiper-slide">
+                    <img data-src="{{$a->getImageUrl()}}" class="d-block img-fluid swiper-lazy">
+                    <div class="carousel-caption d-none d-md-block" style="background: rgba(0,0,0,0.5); border-radius: 20px; ">
+                        <a href="{{ url( 'recipes/' . $a->id ) }}"><h5 style="color: white; ">{{$a->name}}</h5></a>
+                      </div>
+                    <div class="swiper-lazy-preloader"></div>
+                </div>
+                @endforeach
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination swiper-pagination-recent"></div>
+            <div class="swiper-button-prev swiper-button-prev-recent"></div>
+            <div class="swiper-button-next swiper-button-next-recent"></div>
+          </div>
+        </div>
+      </div>
+      @endisset
 
 </div>
 @endsection

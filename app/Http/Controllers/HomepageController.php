@@ -10,11 +10,17 @@ class HomepageController extends Controller
 {
     public function index()
     {
-        //$suggest = ;
         $random = Recipe::all()->random(10);
         $recent = Recipe::all()->sortByDesc('created_at')->take(10);
-        // $activity = Auth::User()->Activity->take(10);
-        // return view('index')->with('random', $random)->with('recent', $recent)->with('activity', $activity);
-        return view('index')->with('random', $random)->with('recent', $recent);
+        $activity = null;
+        if(Auth::check())
+        {
+           $activity = Auth::User()->Activity()->orderBy('pivot_updated_at', 'desc')->take(10)->get();
+           if($activity->isEmpty())
+           {
+                $activity = null;
+           }
+        }
+        return view('index')->with('random', $random)->with('recent', $recent)->with('activity', $activity);
     }
 }
